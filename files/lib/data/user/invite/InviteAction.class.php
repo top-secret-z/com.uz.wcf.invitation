@@ -1,0 +1,122 @@
+<?php
+namespace wcf\data\user\invite;
+use wcf\data\AbstractDatabaseObjectAction;
+use wcf\data\IDeleteAction;
+use wcf\data\user\User;
+use wcf\data\user\UserEditor;
+use wcf\data\user\invite\success\InviteSuccessAction;
+use wcf\data\user\invite\success\InviteSuccessList;
+use wcf\system\cache\builder\InviteTopMembersBoxCacheBuilder;
+use wcf\system\cache\builder\InviteTopSuccessMembersBoxCacheBuilder;
+use wcf\system\user\activity\event\UserActivityEventHandler;
+use wcf\system\user\activity\point\UserActivityPointHandler;
+use wcf\system\WCF;
+
+/**
+ * Executes invitation-related actions.
+ * 
+ * @author		2016-2022 Zaydowicz
+ * @license		GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @package		com.uz.wcf.invitation
+ */
+class InviteAction extends AbstractDatabaseObjectAction implements IDeleteAction {
+	/**
+	 * @inheritDoc
+	 */
+	protected $className = InviteEditor::class;
+	
+	/**
+	 * @inheritDoc
+	 */
+	protected $permissionsCreate = ['user.profile.canInvite'];
+	
+	/**
+	 * @inheritDoc
+	 */
+	protected $permissionsDelete = ['user.profile.canInvite', 'admin.user.canManageInvite'];
+	
+	/**
+	 * @inheritDoc
+	 */
+	protected $permissionsUpdate = ['user.profile.canInvite'];
+	
+	/**
+	 * @inheritDoc
+	 */
+	protected $requireACP = [];
+	
+	/**
+	 * @inheritDoc
+	 */
+	protected $allowGuestAccess = ['getGroupedUserList'];
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function validateDelete() {
+	
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function delete() {
+		$itemsToUserSubmit = $itemsToUserSuccess = [];
+		foreach ($this->objectIDs as $id) {
+			$invite = new Invite($id);
+			if (!$invite->inviteID) continue;
+			
+			$user = new User($invite->inviterID);
+			if (!$user->userID)  continue;
+			
+			// delete success first with action for other purposes
+			$successList = new InviteSuccessList();
+			$successList->getConditionBuilder()->add("user_invite_success.inviteID = ?", [$invite->inviteID]);
+			$successList->readObjectIDs();
+			$action = new InviteSuccessAction($successList->getObjectIDs(), 'delete');
+			$action->executeAction();
+			
+			// update user counts
+			$editor = new UserEditor($user);
+			$editor->updateCounters([
+					'invites' => -1,
+					'inviteSuccess' => -1 * $invite->success
+			]);
+			
+			// store points
+			if (!isset($itemsToUserSubmit[$invite->inviterID])) {
+				$itemsToUserSubmit[$invite->inviterID] = 0;
+			}
+			$itemsToUserSubmit[$invite->inviterID]++;
+			
+			if (!isset($itemsToUserSuccess[$invite->inviterID])) {
+				$itemsToUserSuccess[$invite->inviterID] = 0;
+			}
+			$itemsToUserSuccess[$invite->inviterID] += $invite->successCount;
+		}
+		
+		// remove activity event
+		UserActivityEventHandler::getInstance()->removeEvents('com.uz.wcf.invitation.recentActivityEvent.submit', [$invite->inviteID]);
+		
+		// remove points
+		if (count($itemsToUserSubmit)) {
+			UserActivityPointHandler::getInstance()->removeEvents('com.uz.wcf.invitation.activityPointEvent.submit', $itemsToUserSubmit);
+		}
+		if (count($itemsToUserSuccess)) {
+			UserActivityPointHandler::getInstance()->removeEvents('com.uz.wcf.invitation.activityPointEvent.success', $itemsToUserSuccess);
+		}
+		
+		// update cache
+		InviteTopMembersBoxCacheBuilder::getInstance()->reset();
+		InviteTopSuccessMembersBoxCacheBuilder::getInstance()->reset();
+		
+		parent::delete();
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	public function validateUpdate() {
+	
+	}
+}

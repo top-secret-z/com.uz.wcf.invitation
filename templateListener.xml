@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/templateListener.xsd">
+	<import>
+		<templatelistener name="inviteRegister">
+			<environment>user</environment>
+			<templatename>register</templatename>
+			<eventname>usernameFields</eventname>
+			<templatecode><![CDATA[{include file='__inviteRegister'}]]></templatecode>
+		</templatelistener>
+		
+		<templatelistener name="inviteUserInformationStatistics">
+			<environment>user</environment>
+			<templatename>userInformationStatistics</templatename>
+			<eventname>statistics</eventname>
+			<templatecode><![CDATA[{include file='__inviteUserInformationStatistics'}]]></templatecode>
+		</templatelistener>
+		<templatelistener name="inviteMessageSidebar">
+			<environment>user</environment>
+			<templatename>messageSidebar</templatename>
+			<eventname>userCredits</eventname>
+			<templatecode><![CDATA[{include file='__inviteMessageSidebar'}]]></templatecode>
+		</templatelistener>
+	</import>
+</data>

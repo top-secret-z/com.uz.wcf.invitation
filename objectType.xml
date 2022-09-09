@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/objectType.xsd">
+	<import>
+		<!-- activity points -->
+		<type>
+			<name>com.uz.wcf.invitation.activityPointEvent.submit</name>
+			<definitionname>com.woltlab.wcf.user.activityPointEvent</definitionname>
+			<points>2</points>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.activityPointEvent.success</name>
+			<definitionname>com.woltlab.wcf.user.activityPointEvent</definitionname>
+			<points>50</points>
+		</type>
+		
+		<!-- box controllers -->
+		<type>
+			<name>com.uz.wcf.invitation.topInviter</name>
+			<definitionname>com.woltlab.wcf.boxController</definitionname>
+			<classname>wcf\system\box\InviteTopMembersBoxController</classname>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.topSuccessInviter</name>
+			<definitionname>com.woltlab.wcf.boxController</definitionname>
+			<classname>wcf\system\box\InviteTopSuccessMembersBoxController</classname>
+		</type>
+		
+		<!--  conditions -->
+		<!-- ad conditions -->
+		<type>
+			<name>com.uz.wcf.invitation.invite</name>
+			<definitionname>com.woltlab.wcf.condition.ad</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditionobject>com.woltlab.wcf.user</conditionobject>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>invites</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.inviteSuccess</name>
+			<definitionname>com.woltlab.wcf.condition.ad</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditionobject>com.woltlab.wcf.user</conditionobject>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>inviteSuccess</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<!-- notice conditions -->
+		<type>
+			<name>com.uz.wcf.invitation.invites</name>
+			<definitionname>com.woltlab.wcf.condition.notice</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditionobject>com.woltlab.wcf.user</conditionobject>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>invites</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.inviteSuccess</name>
+			<definitionname>com.woltlab.wcf.condition.notice</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditionobject>com.woltlab.wcf.user</conditionobject>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>inviteSuccess</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		
+		<!-- trophy condition -->
+		<type>
+			<name>com.uz.wcf.invitation.inviteSuccess</name>
+			<definitionname>com.woltlab.wcf.condition.trophy</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditionobject>com.woltlab.wcf.user</conditionobject>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>inviteSuccess</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.invites</name>
+			<definitionname>com.woltlab.wcf.condition.trophy</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditionobject>com.woltlab.wcf.user</conditionobject>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>invites</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		
+		<!-- user bulk processing conditions -->
+		<type>
+			<name>com.uz.wcf.invitation.invites</name>
+			<definitionname>com.woltlab.wcf.bulkProcessing.user.condition</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>invites</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.inviteSuccess</name>
+			<definitionname>com.woltlab.wcf.bulkProcessing.user.condition</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>inviteSuccess</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<!-- user group assignment conditions -->
+		<type>
+			<name>com.uz.wcf.invitation.invites</name>
+			<definitionname>com.woltlab.wcf.condition.userGroupAssignment</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>invites</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.inviteSuccess</name>
+			<definitionname>com.woltlab.wcf.condition.userGroupAssignment</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>inviteSuccess</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<!-- user search conditions -->
+		<type>
+			<name>com.uz.wcf.invitation.invites</name>
+			<definitionname>com.woltlab.wcf.condition.userSearch</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>invites</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.inviteSuccess</name>
+			<definitionname>com.woltlab.wcf.condition.userSearch</definitionname>
+			<classname>wcf\system\condition\UserIntegerPropertyCondition</classname>
+			<conditiongroup>contents</conditiongroup>
+			<propertyname>inviteSuccess</propertyname>
+			<minvalue>0</minvalue>
+		</type>
+		
+		<!-- notification -->
+		<type>
+			<name>com.uz.wcf.invitation</name>
+			<definitionname>com.woltlab.wcf.notification.objectType</definitionname>
+			<classname>wcf\system\user\notification\object\type\InviteSuccessUserNotificationObjectType</classname>
+			<category>com.uz.wcf.invitation</category>
+		</type>
+		
+		<!-- rebuild data workers -->
+		<type>
+			<name>com.uz.wcf.invitation</name>
+			<definitionname>com.woltlab.wcf.rebuildData</definitionname>
+			<classname>wcf\system\worker\InviteRebuildDataWorker</classname>
+		</type>
+		
+		<!--  recent activity -->
+		<type>
+			<name>com.uz.wcf.invitation.recentActivityEvent.submit</name>
+			<definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
+			<classname>wcf\system\user\activity\event\InviteUserActivityEvent</classname>
+		</type>
+		
+		<!-- stat handlers -->
+		<type>
+			<name>com.uz.wcf.invitation.submit</name>
+			<definitionname>com.woltlab.wcf.statDailyHandler</definitionname>
+			<classname>wcf\system\stat\InviteSubmitStatDailyHandler</classname>
+			<default>0</default>
+			<categoryname>com.woltlab.wcf.user</categoryname>
+		</type>
+		<type>
+			<name>com.uz.wcf.invitation.success</name>
+			<definitionname>com.woltlab.wcf.statDailyHandler</definitionname>
+			<classname>wcf\system\stat\InviteSuccessStatDailyHandler</classname>
+			<default>0</default>
+			<categoryname>com.woltlab.wcf.user</categoryname>
+		</type>
+		
+		<!-- user bulk processing actions -->
+		<type>
+			<name>com.uz.wcf.invitation.delete</name>
+			<definitionname>com.woltlab.wcf.bulkProcessing.user.action</definitionname>
+			<classname>wcf\system\bulk\processing\user\InviteDeleteBulkProcessingAction</classname>
+			<action>invitationDelete</action>
+			<permissions>admin.user.canManageInvite</permissions>
+		</type>
+	</import>
+</data>

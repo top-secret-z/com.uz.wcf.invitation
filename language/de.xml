@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/language.xsd" languagecode="de" languagename="Deutsch" countrycode="de">
+	<category name="wcf.acp.box">
+		<item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topInviter"><![CDATA[Mitglieder mit den meisten Einladungen]]></item>
+		<item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topSuccessInviter"><![CDATA[Mitglieder mit den meisten erfolgreichen Einladungen]]></item>
+	</category>
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.user.profile.invite"><![CDATA[Einladungen]]></item>
+		<item name="wcf.acp.group.option.admin.user.canManageInvite"><![CDATA[Kann Einladungen verwalten]]></item>
+		<item name="wcf.acp.group.option.user.profile.canInvite"><![CDATA[Kann einladen]]></item>
+	</category>
+	
+	<category name="wcf.acp.invite">
+		<item name="wcf.acp.invite.code"><![CDATA[Code]]></item>
+		<item name="wcf.acp.invite.delete.sure"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} diese Einladung wirklich löschen?]]></item>
+		<item name="wcf.acp.invite.emails"><![CDATA[E-Mails]]></item>
+		<item name="wcf.acp.invite.inviterName"><![CDATA[Benutzer]]></item>
+		<item name="wcf.acp.invite.list"><![CDATA[Einladungen]]></item>
+		<item name="wcf.acp.invite.message"><![CDATA[Nachricht]]></item>
+		<item name="wcf.acp.invite.successCount"><![CDATA[Erfolg]]></item>
+		<item name="wcf.acp.invite.time"><![CDATA[Zeit]]></item>
+	</category>
+	
+	<category name="wcf.acp.menu">
+		<item name="wcf.acp.menu.link.user.inviteList"><![CDATA[Einladungen]]></item>
+	</category>
+	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.module_invite"><![CDATA[Einladungen]]></item>
+		<item name="wcf.acp.option.module_invite_activity"><![CDATA[Einladungen - Aktivität]]></item>
+		<item name="wcf.acp.option.category.user.invite"><![CDATA[Einladungen]]></item>
+		<item name="wcf.acp.option.category.user.invite.code"><![CDATA[Einladungscode]]></item>
+		<item name="wcf.acp.option.category.user.invite.display"><![CDATA[Anzeige]]></item>
+		<item name="wcf.acp.option.category.user.invite.email"><![CDATA[E-Mail]]></item>
+		<item name="wcf.acp.option.invite_code_expire"><![CDATA[Gültigkeitsdauer]]></item>
+		<item name="wcf.acp.option.invite_code_expire.description"><![CDATA[Ein generierter Code ist nur für den angegebenen Zeitraum gültig. 0 eingeben, damit ein Code dauerhaft gültig ist.]]></item>
+		<item name="wcf.acp.option.invite_code_length"><![CDATA[Langen Code nutzen]]></item>
+		<item name="wcf.acp.option.invite_code_length.description"><![CDATA[Es wird ein Code in der Form XXXX-XXXX-XXXX-XXXX genutzt.]]></item>
+		<item name="wcf.acp.option.invite_code_limit"><![CDATA[Limit]]></item>
+		<item name="wcf.acp.option.invite_code_limit.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gebe{else}Geben Sie{/if} hier an, wie häufig ein Code genutzt werden darf. 0 eingeben, damit der Code beliebig oft genutzt werden kann.]]></item>
+		<item name="wcf.acp.option.invite_code_option"><![CDATA[Eingabe während der Registrierung]]></item>
+		<item name="wcf.acp.option.invite_code_option.may"><![CDATA[optional]]></item>
+		<item name="wcf.acp.option.invite_code_option.maynot"><![CDATA[verhindern]]></item>
+		<item name="wcf.acp.option.invite_code_option.must"><![CDATA[erzwingen]]></item>
+		<item name="wcf.acp.option.invite_code_option.description"><![CDATA[Bei „erzwingen“ wird im Registrierungsformular das Eingabefeld für den Code angezeigt und für eine erfolgreiche Registrierung muss der korrekte Code eingegeben werden. Bei „verhindern“ kann kein Code eingegeben werden; das Feld ist ausgeblendet. Bei „optional“ wird das Feld angezeigt und es kann ein Code eingegeben werden, muss aber nicht.]]></item>
+		<item name="wcf.acp.option.invite_code_username"><![CDATA[Benutzername]]></item>
+		<item name="wcf.acp.option.invite_code_username.description"><![CDATA[Der Eingeladene darf statt Code alternativ den Benutzernamen des Einladenden eingeben.]]></item>
+		<item name="wcf.acp.option.invite_display_box_entries"><![CDATA[Einträge in der Box]]></item>
+		<item name="wcf.acp.option.invite_display_message_sidebar"><![CDATA[In Seitenleiste anzeigen]]></item>
+		<item name="wcf.acp.option.invite_display_userInformation"><![CDATA[Bei Benutzerinformationen anzeigen]]></item>
+		<item name="wcf.acp.option.invite_email_limit"><![CDATA[Limit]]></item>
+		<item name="wcf.acp.option.invite_email_limit.description"><![CDATA[Es darf bei einer Einladung nur die angegebene Zahl von unterschiedlichen E-Mail-Empfängern angegeben werden.]]></item>
+		<item name="wcf.acp.option.invite_email_time"><![CDATA[Spam-Schutz]]></item>
+		<item name="wcf.acp.option.invite_email_time.description"><![CDATA[Eine E-Mail-Adresse darf erst nach der angegebenen Zeit erneut für eine Einladung genutzt werden.]]></item>
+	</category>
+	
+	<category name="wcf.acp.rebuildData">
+		<item name="wcf.acp.rebuildData.com.uz.wcf.invitation"><![CDATA[Einladungen aktualisieren]]></item>
+		<item name="wcf.acp.rebuildData.com.uz.wcf.invitation.description"><![CDATA[Aktualisiert Zähler der Einladungen, berechnet Aktivitätspunkte neu]]></item>
+	</category>
+	
+	<category name="wcf.acp.stat">
+		<item name="wcf.acp.stat.com.uz.wcf.invitation.submit"><![CDATA[Einladungen]]></item>
+		<item name="wcf.acp.stat.com.uz.wcf.invitation.success"><![CDATA[Erfolgreiche Einladungen]]></item>
+	</category>
+	
+	<category name="wcf.acp.user">
+		<item name="wcf.acp.user.bulkProcessing.invitationDelete"><![CDATA[Einladungen löschen]]></item>
+	</category>
+	
+	<category name="wcf.user">
+		<item name="wcf.user.activityPoint.objectType.com.uz.wcf.invitation.activityPointEvent.submit"><![CDATA[Einladungen]]></item>
+		<item name="wcf.user.activityPoint.objectType.com.uz.wcf.invitation.activityPointEvent.success"><![CDATA[Erfolgreiche Einladungen]]></item>
+		<item name="wcf.user.sortField.invites"><![CDATA[Einladungen]]></item>
+		<item name="wcf.user.sortField.inviteSuccess"><![CDATA[Erfolgreiche Einladungen]]></item>
+	</category>
+	
+	<category name="wcf.user.condition">
+		<item name="wcf.user.condition.invites"><![CDATA[Erstellte Einladungen]]></item>
+		<item name="wcf.user.condition.inviteSuccess"><![CDATA[Erfolgreich eingeladene Mitglieder]]></item>
+	</category>
+	
+	<category name="wcf.user.invite">
+		<item name="wcf.user.invite.add"><![CDATA[Einladung erstellen]]></item>
+		<item name="wcf.user.invite.add.success"><![CDATA[Die Einladung wurde erfolgreich gespeichert.]]></item>
+		<item name="wcf.user.invite.box.invites"><![CDATA[{#$userProfile->invites} {if $userProfile->invites == 1}Einladung{else}Einladungen{/if}]]></item>
+		<item name="wcf.user.invite.box.inviteSuccess"><![CDATA[{#$userProfile->inviteSuccess} {if $userProfile->inviteSuccess == 1}Einladung{else}Einladungen{/if}]]></item>
+		<item name="wcf.user.invite.code"><![CDATA[Einladungscode]]></item>
+		<item name="wcf.user.invite.code.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du kannst{else}Sie können{/if} den Code direkt per E-Mail versenden oder für eine andere Übermittlungsart notieren und persönlich weitergeben.]]></item>
+		<item name="wcf.user.invite.code.share"><![CDATA[persönliche Weitergabe]]></item>
+		<item name="wcf.user.invite.code.validity"><![CDATA[Der Code ist {if INVITE_CODE_EXPIRE}{INVITE_CODE_EXPIRE} {if INVITE_CODE_EXPIRE == 1}Tag{else}Tage{/if} gültig{else} dauerhaft gültig{/if}.<br>{if LANGUAGE_USE_INFORMAL_VARIANT}Klicke{else}Klicken Sie{/if} am Ende des Formulars auf „Absenden“, um die Einladung zu speichern und um den Code zu aktivieren.]]></item>
+		<item name="wcf.user.invite.description.may"><![CDATA[Der Eingeladene kann den Einladungscode angeben, muss es aber nicht. Die Einladung wird {if LANGUAGE_USE_INFORMAL_VARIANT}deinem{else}Ihrem{/if} Punktekonto gutgeschrieben, wenn sich ein neuer Benutzer mit dem Code oder der E-Mail-Adresse, die {if LANGUAGE_USE_INFORMAL_VARIANT}du in der E-Mail genutzt hast{else}Sie in der E-Mail genutzt haben{/if}, registriert.]]></item>
+		<item name="wcf.user.invite.description.maynot"><![CDATA[Die Einladung wird {if LANGUAGE_USE_INFORMAL_VARIANT}deinem{else}Ihrem{/if} Punktekonto gutgeschrieben, wenn sich ein neuer Benutzer mit der E-Mail-Adresse registriert, die {if LANGUAGE_USE_INFORMAL_VARIANT}du in der E-Mail genutzt hast{else}Sie in der E-Mail genutzt haben{/if}.]]></item>
+		<item name="wcf.user.invite.description.must"><![CDATA[Der Eingeladene muss den Einladungscode angeben. Die Einladung wird {if LANGUAGE_USE_INFORMAL_VARIANT}deinem{else}Ihrem{/if} Punktekonto gutgeschrieben, wenn sich ein neuer Benutzer mit dem Code registriert.]]></item>
+		<item name="wcf.user.invite.description.username"><![CDATA[Der Eingeladene kann alternativ {if LANGUAGE_USE_INFORMAL_VARIANT}deinen{else}Ihren{/if} Benutzernamen bei der Registrierung angeben.]]></item>
+		<item name="wcf.user.invite.email"><![CDATA[E-Mail]]></item>
+		<item name="wcf.user.invite.email.description"><![CDATA[Es wird {if LANGUAGE_USE_INFORMAL_VARIANT}deine{else}Ihre{/if} E-Mail-Adresse als Absender-Adresse genutzt. Empfänger können direkt an {if LANGUAGE_USE_INFORMAL_VARIANT}dich{else}Sie{/if} auf die Nachricht antworten.]]></item>
+		<item name="wcf.user.invite.email.subject"><![CDATA[Nachricht von {@$username}: {@$subject}]]></item>
+		<item name="wcf.user.invite.emailField"><![CDATA[Empfänger]]></item>
+		<item name="wcf.user.invite.emailField.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du kannst{else}Sie können{/if}{if INVITE_EMAIL_LIMIT == 1} eine E-Mail-Adresse{else} bis zu {@INVITE_EMAIL_LIMIT} E-Mail-Adressen{/if} eingeben. Eine E-Mail-Adresse pro Zeile.]]></item>
+		<item name="wcf.user.invite.emailField.error.blockedEmail"><![CDATA[Die E-Mail-Adresse {$blockedEmail} wurde vor Kurzem genutzt und darf zunächst nicht erneut eingegeben werden. {if LANGUAGE_USE_INFORMAL_VARIANT}Versuche{else}Versuchen Sie{/if} diese Adresse in {#$days} {if $days == 1}Tag{else}Tagen{/if} noch einmal.]]></item>
+		<item name="wcf.user.invite.emailField.error.notValid"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} eine ungültige E-Mail-Adresse eingegeben: {$invalidEmail}.]]></item>
+		<item name="wcf.user.invite.emailField.error.tooMany"><![CDATA[Es{if INVITE_EMAIL_LIMIT == 1} darf nur 1 E-Mail-Adresse{else} dürfen nur {INVITE_EMAIL_LIMIT} E-Mail-Adressen{/if} angegeben werden.]]></item>
+		<item name="wcf.user.invite.invite"><![CDATA[Einladungen]]></item>
+		<item name="wcf.user.invite.invites"><![CDATA[Einladungen]]></item>
+		<item name="wcf.user.invite.inviteSuccess"><![CDATA[Erfolgreiche Einladungen]]></item>
+		<item name="wcf.user.invite.inviteCode"><![CDATA[Einladungscode]]></item>
+		<item name="wcf.user.invite.inviteCode.description.may"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Falls du einen Einladungscode erhalten hast, gebe ihn bitte hier ein.{else}Falls Sie einen Einladungscode erhalten haben, geben Sie ihn bitte hier ein.{/if}]]></item>
+		<item name="wcf.user.invite.inviteCode.description.must"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gebe{else}Geben Sie{/if} hier den erhaltenen Einladungscode ein. Ohne Code ist eine Registrierung nicht möglich.]]></item>
+		<item name="wcf.user.invite.inviteCode.error.empty"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du musst{else}Sie müssen{/if} den Einladungscode eingeben.]]></item>
+		<item name="wcf.user.invite.inviteCode.error.invalid"><![CDATA[Der eingegebene Code ist ungültig oder abgelaufen.]]></item>
+		<item name="wcf.user.invite.inviteCode.username"><![CDATA[Einladungscode oder Name]]></item>
+		<item name="wcf.user.invite.inviteCode.username.description.may"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Falls du einen Einladungscode erhalten hast, gebe ihn bitte hier ein{else}Falls Sie einen Einladungscode erhalten haben, geben Sie ihn bitte hier ein{/if}. Alternativ {if LANGUAGE_USE_INFORMAL_VARIANT}kannst du{else}können Sie{/if} den Benutzernamen des Einladenden eingeben.]]></item>
+		<item name="wcf.user.invite.inviteCode.username.error.invalidUsername"><![CDATA[Der eingegebene Code bzw. Benutzername des Einladenden ist ungültig oder abgelaufen.]]></item>
+		<item name="wcf.user.invite.list"><![CDATA[auflisten]]></item>
+		<item name="wcf.user.invite.mail.html"><![CDATA[<h2>Hallo,</h2>
+
+<p>„{$username}“ hat {if LANGUAGE_USE_INFORMAL_VARIANT}dir{else}Ihnen{/if} über die Website <a href="{link isHtmlEmail=true}{/link}">{PAGE_TITLE|language}</a> folgende Nachricht gesandt:</p>
+
+<p>{@$message|newlineToBreak}</p>]]></item>
+		<item name="wcf.user.invite.mail.plaintext"><![CDATA[Hallo,
+
+„{@$username}“ hat {if LANGUAGE_USE_INFORMAL_VARIANT}dir{else}Ihnen{/if} über die Website {@PAGE_TITLE|language} [URL:{link isEmail=true}{/link}] folgende Nachricht gesandt:
+
+{@$message}]]></item>
+		<item name="wcf.user.invite.method"><![CDATA[Weitergabe]]></item>
+		<item name="wcf.user.invite.method.copy"><![CDATA[persönlich]]></item>
+		<item name="wcf.user.invite.method.email"><![CDATA[E-Mail]]></item>
+		<item name="wcf.user.invite.myInvites"><![CDATA[Meine Einladungen]]></item>
+		<item name="wcf.user.invite.myInviteSuccess"><![CDATA[Es {if $count == 1}hat sich {$count} Benutzer{else}haben sich {#$count} Benutzer{/if} nach {if LANGUAGE_USE_INFORMAL_VARIANT}deiner{else}Ihrer{/if} Einladung bzw. unter Angabe {if LANGUAGE_USE_INFORMAL_VARIANT}deines{else}Ihres{/if} Benutzernamens registriert.]]></item>
+		<item name="wcf.user.invite.myInvites.username"><![CDATA[Benutzername angegeben]]></item>
+		<item name="wcf.user.invite.noInvites"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} noch keine Einladungen erstellt.]]></item>
+		<item name="wcf.user.invite.recentActivity.submit"><![CDATA[Hat eine <a href="{link controller='InviteAdd'}{/link}">Einladung</a> erstellt.]]></item>
+		<item name="wcf.user.invite.subject"><![CDATA[Betreff]]></item>
+		<item name="wcf.user.invite.subject.default"><![CDATA[Einladung für „{PAGE_TITLE|language}“]]></item>
+		<item name="wcf.user.invite.subject.error.tooLong"><![CDATA[Der Betreff darf maximal 255 Zeichen lang sein.]]></item>
+		<item name="wcf.user.invite.success"><![CDATA[{#$invite->successCount} mal erfolgreich]]></item>
+		<item name="wcf.user.invite.message"><![CDATA[Nachricht]]></item>
+		<item name="wcf.user.invite.message.default"><![CDATA[Hallo,
+		
+Seite: {PAGE_TITLE|language}
+
+Link: {link controller=''}{/link}
+
+{if INVITE_CODE_OPTION != 'maynot'}Code: {$code}{/if}
+
+
+Mit freundlichen Grüßen]]></item>
+		<item name="wcf.user.invite.message.error.noCode"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Deine{else}Ihre{/if} E-Mail enhält keinen oder einen falschen Code.]]></item>
+	</category>
+	
+	<category name="wcf.user.menu">
+		<item name="wcf.user.menu.invite"><![CDATA[Einladungen]]></item>
+		<item name="wcf.user.menu.invite.add"><![CDATA[Einladung erstellen]]></item>
+		<item name="wcf.user.menu.invite.list"><![CDATA[Meine Einladungen]]></item>
+	</category>
+	
+	<category name="wcf.user.notification">
+		<item name="wcf.user.notification.com.uz.wcf.invitation"><![CDATA[Einladungen]]></item>
+		<item name="wcf.user.notification.com.uz.wcf.invitation.success"><![CDATA[Eine {if LANGUAGE_USE_INFORMAL_VARIANT}deiner{else}Ihrer{/if} Einladungen war erfolgreich]]></item>
+		<item name="wcf.user.notification.invite.title"><![CDATA[Erfolgreiche Einladung]]></item>
+		<item name="wcf.user.notification.invite.title.stacked"><![CDATA[{#$timesTriggered} erfolgreiche Einladung]]></item>
+		<item name="wcf.user.notification.invite.message"><![CDATA[{if !$author->userID}Ein Gast{else}{@$author->getAnchorTag()}{/if} hat sich nach {if LANGUAGE_USE_INFORMAL_VARIANT}deiner{else}Ihrer{/if} Einladung oder unter Angabe {if LANGUAGE_USE_INFORMAL_VARIANT}deines{else}Ihres{/if} Benutzernamens registriert.]]></item>
+		<item name="wcf.user.notification.invite.message.stacked"><![CDATA[{if $count < 4}{@$authors[0]->getAnchorTag()}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} und {else}, {/if}{@$authors[1]->getAnchorTag()}{if $count == 3}{if !$guestTimesTriggered} und {else}, {/if} {@$authors[2]->getAnchorTag()}{/if}{/if}{if $guestTimesTriggered} und {if $guestTimesTriggered == 1}ein Gast{else}Gäste{/if}{/if}{else}{@$authors[0]->getAnchorTag()}{if $guestTimesTriggered},{else} und{/if} {#$others} weitere Benutzer {if $guestTimesTriggered}und {if $guestTimesTriggered == 1}ein Gast{else}Gäste{/if}{/if}{/if} haben sich nach {if LANGUAGE_USE_INFORMAL_VARIANT}deiner{else}Ihrer{/if} Einladung oder unter Angabe {if LANGUAGE_USE_INFORMAL_VARIANT}deines{else}Ihres{/if} Benutzernamens registriert.]]></item>
+	</category>
+	
+	<category name="wcf.user.recentActivity">
+		<item name="wcf.user.recentActivity.com.uz.wcf.invitation.recentActivityEvent.submit"><![CDATA[Einladung]]></item>
+	</category>
+</language>

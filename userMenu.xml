@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/userMenu.xsd">
+	<import>
+		<usermenuitem name="wcf.user.menu.invite">
+			<classname>\wcf\system\menu\user\InviteMenuItemProvider</classname>
+			<options>module_invite</options>
+			<iconclassname>fa-key</iconclassname>
+		</usermenuitem>
+		
+		<usermenuitem name="wcf.user.menu.invite.list">
+			<controller><![CDATA[wcf\page\InviteListUserPage]]></controller>
+			<parent>wcf.user.menu.invite</parent>
+			<permissions>user.profile.canInvite</permissions>
+		</usermenuitem>
+		<usermenuitem name="wcf.user.menu.invite.add">
+			<controller><![CDATA[wcf\form\InviteAddForm]]></controller>
+			<parent>wcf.user.menu.invite</parent>
+			<permissions>user.profile.canInvite</permissions>
+		</usermenuitem>
+	</import>
+</data>

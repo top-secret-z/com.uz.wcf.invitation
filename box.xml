@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/box.xsd">
+	<import>
+		<box identifier="com.uz.wcf.invitation.topInviter">
+			<name language="de">Mitglieder mit den meisten Einladungen</name>
+			<name language="en">Members with the most Invitations</name>
+			<boxType>system</boxType>
+			<objectType>com.uz.wcf.invitation.topInviter</objectType>
+			<position>sidebarRight</position>
+			<showHeader>1</showHeader>
+			<visibleEverywhere>0</visibleEverywhere>
+			<sortField>invites</sortField>
+			<sortOrder>DESC</sortOrder>
+			
+			<content language="de">
+				<title>Mitglieder mit den meisten Einladungen</title>
+			</content>
+			<content language="en">
+				<title>Members with the most Invitations</title>
+			</content>
+		</box>
+		
+		<box identifier="com.uz.wcf.invitation.topSuccessInviter">
+			<name language="de">Mitglieder mit den meisten erfolgreichen Einladungen</name>
+			<name language="en">Members with the most successful Invitations</name>
+			<boxType>system</boxType>
+			<objectType>com.uz.wcf.invitation.topSuccessInviter</objectType>
+			<position>sidebarRight</position>
+			<showHeader>1</showHeader>
+			<visibleEverywhere>0</visibleEverywhere>
+			<sortField>inviteSuccess</sortField>
+			<sortOrder>DESC</sortOrder>
+			
+			<content language="de">
+				<title>Mitglieder mit den meisten erfolgreichen Einladungen</title>
+			</content>
+			<content language="en">
+				<title>Members with the most successful Invitations</title>
+			</content>
+		</box>
+	</import>
+</data>
