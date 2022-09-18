@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/userNotificationEvent.xsd">
-	<import>
-		<event>
-			<name>success</name>
-			<objecttype>com.uz.wcf.invitation</objecttype>
-			<classname>wcf\system\user\notification\event\InviteSuccessUserNotificationEvent</classname>
-			<preset>1</preset>
-			<options>module_invite</options>
-		</event>
-	</import>
+    <import>
+        <event>
+            <name>success</name>
+            <objecttype>com.uz.wcf.invitation</objecttype>
+            <classname>wcf\system\user\notification\event\InviteSuccessUserNotificationEvent</classname>
+            <preset>1</preset>
+            <options>module_invite</options>
+        </event>
+    </import>
 </data>
