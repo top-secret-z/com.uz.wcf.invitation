@@ -7,6 +7,7 @@
         <packagedescription language="de">Ermöglicht es Benutzern, Einladungen für die Community auszusprechen.</packagedescription>
         <version>5.5.1</version>
         <date>2022-09-18</date>
+        <license><![CDATA[LGPL <https://opensource.org/licenses/lgpl-license.php>]]></license>
     </packageinformation>
 
     <authorinformation>
