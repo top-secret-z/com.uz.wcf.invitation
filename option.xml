@@ -1,107 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/option.xsd">
-	<import>
-		<categories>
-			<category name="user.invite">
-				<parent>user</parent>
-			</category>
-			<category name="user.invite.code">
-				<parent>user.invite</parent>
-			</category>
-			<category name="user.invite.email">
-				<parent>user.invite</parent>
-			</category>
-			<category name="user.invite.display">
-				<parent>user.invite</parent>
-			</category>
-		</categories>
-		
-		<options>
-			<option name="module_invite">
-				<categoryname>module.user</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			<option name="module_invite_activity">
-				<categoryname>module.user</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			
-			<option name="invite_code_option">
-				<categoryname>user.invite.code</categoryname>
-				<optiontype>radioButton</optiontype>
-				<defaultvalue>may</defaultvalue>
-				<showorder>1</showorder>
-				<selectoptions><![CDATA[may:wcf.acp.option.invite_code_option.may
+    <import>
+        <categories>
+            <category name="user.invite">
+                <parent>user</parent>
+            </category>
+            <category name="user.invite.code">
+                <parent>user.invite</parent>
+            </category>
+            <category name="user.invite.email">
+                <parent>user.invite</parent>
+            </category>
+            <category name="user.invite.display">
+                <parent>user.invite</parent>
+            </category>
+        </categories>
+
+        <options>
+            <option name="module_invite">
+                <categoryname>module.user</categoryname>
+                <optiontype>boolean</optiontype>
+                <defaultvalue>1</defaultvalue>
+            </option>
+            <option name="module_invite_activity">
+                <categoryname>module.user</categoryname>
+                <optiontype>boolean</optiontype>
+                <defaultvalue>1</defaultvalue>
+            </option>
+
+            <option name="invite_code_option">
+                <categoryname>user.invite.code</categoryname>
+                <optiontype>radioButton</optiontype>
+                <defaultvalue>may</defaultvalue>
+                <showorder>1</showorder>
+                <selectoptions><![CDATA[may:wcf.acp.option.invite_code_option.may
 maynot:wcf.acp.option.invite_code_option.maynot
 must:wcf.acp.option.invite_code_option.must]]></selectoptions>
-				<enableoptions>may:invite_code_username
+                <enableoptions>may:invite_code_username
 maynot:!invite_code_username
 must:!invite_code_username</enableoptions>
-			</option>
-			<option name="invite_code_expire">
-				<categoryname>user.invite.code</categoryname>
-				<optiontype>integer</optiontype>
-				<defaultvalue>14</defaultvalue>
-				<minvalue>0</minvalue>
-				<suffix>days</suffix>
-				<showorder>2</showorder>
-			</option>
-			<option name="invite_code_limit">
-				<categoryname>user.invite.code</categoryname>
-				<optiontype>integer</optiontype>
-				<defaultvalue>0</defaultvalue>
-				<minvalue>0</minvalue>
-				<showorder>3</showorder>
-			</option>
-			
-			<option name="invite_code_username">
-				<categoryname>user.invite.code</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-				<showorder>4</showorder>
-			</option>
-			
-			<option name="invite_code_length">
-				<categoryname>user.invite.code</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>0</defaultvalue>
-				<showorder>5</showorder>
-			</option>
-			
-			<option name="invite_email_limit">
-				<categoryname>user.invite.email</categoryname>
-				<optiontype>integer</optiontype>
-				<defaultvalue>3</defaultvalue>
-				<minvalue>1</minvalue>
-			</option>
-			<option name="invite_email_time">
-				<categoryname>user.invite.email</categoryname>
-				<optiontype>integer</optiontype>
-				<defaultvalue>14</defaultvalue>
-				<minvalue>0</minvalue>
-				<suffix>days</suffix>
-			</option>
-			
-			<option name="invite_display_message_sidebar">
-				<categoryname>user.invite.display</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-				<option name="invite_display_userInformation">
-				<categoryname>user.invite.display</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			
-			<option name="invite_display_box_entries">
-				<categoryname>user.invite.display</categoryname>
-				<optiontype>integer</optiontype>
-				<defaultvalue>5</defaultvalue>
-				<minvalue>1</minvalue>
-				<maxvalue>25</maxvalue>
-			</option>
-		</options>
-	</import>
+            </option>
+            <option name="invite_code_expire">
+                <categoryname>user.invite.code</categoryname>
+                <optiontype>integer</optiontype>
+                <defaultvalue>14</defaultvalue>
+                <minvalue>0</minvalue>
+                <suffix>days</suffix>
+                <showorder>2</showorder>
+            </option>
+            <option name="invite_code_limit">
+                <categoryname>user.invite.code</categoryname>
+                <optiontype>integer</optiontype>
+                <defaultvalue>0</defaultvalue>
+                <minvalue>0</minvalue>
+                <showorder>3</showorder>
+            </option>
+
+            <option name="invite_code_username">
+                <categoryname>user.invite.code</categoryname>
+                <optiontype>boolean</optiontype>
+                <defaultvalue>1</defaultvalue>
+                <showorder>4</showorder>
+            </option>
+
+            <option name="invite_code_length">
+                <categoryname>user.invite.code</categoryname>
+                <optiontype>boolean</optiontype>
+                <defaultvalue>0</defaultvalue>
+                <showorder>5</showorder>
+            </option>
+
+            <option name="invite_email_limit">
+                <categoryname>user.invite.email</categoryname>
+                <optiontype>integer</optiontype>
+                <defaultvalue>3</defaultvalue>
+                <minvalue>1</minvalue>
+            </option>
+            <option name="invite_email_time">
+                <categoryname>user.invite.email</categoryname>
+                <optiontype>integer</optiontype>
+                <defaultvalue>14</defaultvalue>
+                <minvalue>0</minvalue>
+                <suffix>days</suffix>
+            </option>
+
+            <option name="invite_display_message_sidebar">
+                <categoryname>user.invite.display</categoryname>
+                <optiontype>boolean</optiontype>
+                <defaultvalue>1</defaultvalue>
+            </option>
+                <option name="invite_display_userInformation">
+                <categoryname>user.invite.display</categoryname>
+                <optiontype>boolean</optiontype>
+                <defaultvalue>1</defaultvalue>
+            </option>
+
+            <option name="invite_display_box_entries">
+                <categoryname>user.invite.display</categoryname>
+                <optiontype>integer</optiontype>
+                <defaultvalue>5</defaultvalue>
+                <minvalue>1</minvalue>
+                <maxvalue>25</maxvalue>
+            </option>
+        </options>
+    </import>
 </data>

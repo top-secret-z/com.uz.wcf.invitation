@@ -1,144 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/language.xsd" languagecode="en" languagename="English" countrycode="gb">
-	<category name="wcf.acp.box">
-		<item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topInviter"><![CDATA[Members with the most invitations]]></item>
-		<item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topSuccessInviter"><![CDATA[Members with the most successful invitations]]></item>
-	</category>
-	
-	<category name="wcf.acp.group">
-		<item name="wcf.acp.group.option.category.user.profile.invite"><![CDATA[Invitations]]></item>
-		<item name="wcf.acp.group.option.admin.user.canManageInvite"><![CDATA[Can manage invitations]]></item>
-		<item name="wcf.acp.group.option.user.profile.canInvite"><![CDATA[Can invite]]></item>
-	</category>
-	
-	<category name="wcf.acp.invite">
-		<item name="wcf.acp.invite.code"><![CDATA[Code]]></item>
-		<item name="wcf.acp.invite.delete.sure"><![CDATA[Do you really want to delete the invitation?]]></item>
-		<item name="wcf.acp.invite.emails"><![CDATA[Emails]]></item>
-		<item name="wcf.acp.invite.inviterName"><![CDATA[User]]></item>
-		<item name="wcf.acp.invite.list"><![CDATA[Invitations]]></item>
-		<item name="wcf.acp.invite.message"><![CDATA[Message]]></item>
-		<item name="wcf.acp.invite.successCount"><![CDATA[Success]]></item>
-		<item name="wcf.acp.invite.time"><![CDATA[Time]]></item>
-	</category>
-	
-	<category name="wcf.acp.menu">
-		<item name="wcf.acp.menu.link.user.inviteList"><![CDATA[Invitations]]></item>
-	</category>
-	
-	<category name="wcf.acp.option">
-		<item name="wcf.acp.option.module_invite"><![CDATA[Invitations]]></item>
-		<item name="wcf.acp.option.module_invite_activity"><![CDATA[Invitations - Activity]]></item>
-		<item name="wcf.acp.option.category.user.invite"><![CDATA[Invitations]]></item>
-		<item name="wcf.acp.option.category.user.invite.code"><![CDATA[Invitation Code]]></item>
-		<item name="wcf.acp.option.category.user.invite.display"><![CDATA[Display]]></item>
-		<item name="wcf.acp.option.category.user.invite.email"><![CDATA[Email]]></item>
-		<item name="wcf.acp.option.invite_code_expire"><![CDATA[Validity Period]]></item>
-		<item name="wcf.acp.option.invite_code_expire.description"><![CDATA[The code is valid for the given period of time. Enter 0 for an indefinitely valid code.]]></item>
-		<item name="wcf.acp.option.invite_code_length"><![CDATA[Use long code]]></item>
-		<item name="wcf.acp.option.invite_code_length.description"><![CDATA[A code in the form XXXX-XXXX-XXXX-XXXX is used.]]></item>
-		<item name="wcf.acp.option.invite_code_limit"><![CDATA[Limit]]></item>
-		<item name="wcf.acp.option.invite_code_limit.description"><![CDATA[Enter here how often a code can be used. Enter 0 to allow the code to be used unlimited.]]></item>
-		<item name="wcf.acp.option.invite_code_option"><![CDATA[Entry during Registration]]></item>
-		<item name="wcf.acp.option.invite_code_option.may"><![CDATA[optional]]></item>
-		<item name="wcf.acp.option.invite_code_option.maynot"><![CDATA[prevent]]></item>
-		<item name="wcf.acp.option.invite_code_option.must"><![CDATA[enforce]]></item>
-		<item name="wcf.acp.option.invite_code_option.description"><![CDATA[“enforce” will display the input field for the code and the correct code has to be inserted for a successful registration. Choosing “prevent” will hide the input field. „optional“ will display it and users may enter a code or not.]]></item>
-		<item name="wcf.acp.option.invite_code_username"><![CDATA[Username]]></item>
-		<item name="wcf.acp.option.invite_code_username.description"><![CDATA[The invited person may alternatively enter the username of the inviting member.]]></item>
-		<item name="wcf.acp.option.invite_display_box_entries"><![CDATA[Box Entries]]></item>
-		<item name="wcf.acp.option.invite_display_message_sidebar"><![CDATA[Show in message sidebar]]></item>
-		<item name="wcf.acp.option.invite_display_userInformation"><![CDATA[Show with user information]]></item>
-		<item name="wcf.acp.option.invite_email_limit"><![CDATA[Limit]]></item>
-		<item name="wcf.acp.option.invite_email_limit.description"><![CDATA[You may only enter the given number of different email addresses.]]></item>
-		<item name="wcf.acp.option.invite_email_time"><![CDATA[Spam Protection]]></item>
-		<item name="wcf.acp.option.invite_email_time.description"><![CDATA[You may re-use an email address for an invitation only after the given amount of time.]]></item>
-	</category>
-	
-	<category name="wcf.acp.rebuildData">
-		<item name="wcf.acp.rebuildData.com.uz.wcf.invitation"><![CDATA[Rebuild Invitations]]></item>
-		<item name="wcf.acp.rebuildData.com.uz.wcf.invitation.description"><![CDATA[Rebuild invitation counts and recalculates the activity points]]></item>
-	</category>
-	
-	<category name="wcf.acp.stat">
-		<item name="wcf.acp.stat.com.uz.wcf.invitation.submit"><![CDATA[Invitations]]></item>
-		<item name="wcf.acp.stat.com.uz.wcf.invitation.success"><![CDATA[Successful invitations]]></item>
-	</category>
-	
-	<category name="wcf.acp.user">
-		<item name="wcf.acp.user.bulkProcessing.invitationDelete"><![CDATA[Delete Invitations]]></item>
-	</category>
-	
-	<category name="wcf.user">
-		<item name="wcf.user.activityPoint.objectType.com.uz.wcf.invitation.activityPointEvent.submit"><![CDATA[Invitations]]></item>
-		<item name="wcf.user.activityPoint.objectType.com.uz.wcf.invitation.activityPointEvent.success"><![CDATA[Successful invitations]]></item>
-		<item name="wcf.user.sortField.invites"><![CDATA[Invitations]]></item>
-		<item name="wcf.user.sortField.inviteSuccess"><![CDATA[Succesful invitations]]></item>
-	</category>
-	
-	<category name="wcf.user.condition">
-		<item name="wcf.user.condition.invites"><![CDATA[Created invitations]]></item>
-		<item name="wcf.user.condition.inviteSuccess"><![CDATA[Successfully invited members]]></item>
-	</category>
-	
-	<category name="wcf.user.invite">
-		<item name="wcf.user.invite.add"><![CDATA[Create invitation]]></item>
-		<item name="wcf.user.invite.add.success"><![CDATA[The invitation was successfully created.]]></item>
-		<item name="wcf.user.invite.box.invites"><![CDATA[{#$userProfile->invites} {if $userProfile->invites == 1}invitation{else}invitations{/if}]]></item>
-		<item name="wcf.user.invite.box.iinviteSuccess"><![CDATA[{#$userProfile->inviteSuccess} {if $userProfile->inviteSuccess == 1}invitation{else}invitations{/if}]]></item>
-		<item name="wcf.user.invite.code"><![CDATA[Invitation Code]]></item>
-		<item name="wcf.user.invite.code.description"><![CDATA[You may send the code by email or note it for another mean of communication or personal handing over.]]></item>
-		<item name="wcf.user.invite.code.share"><![CDATA[personal handing over]]></item>
-		<item name="wcf.user.invite.code.validity"><![CDATA[The code is {if INVITE_CODE_EXPIRE}valid for {INVITE_CODE_EXPIRE} {if INVITE_CODE_EXPIRE == 1}day{else}days{/if}{else}valid permanently{/if}.<br>Click “Submit” at the end of the form to save the invitation and to activate the code.]]></item>
-		<item name="wcf.user.invite.description.may"><![CDATA[The invited may insert the invitation code. The invitation will be added to your point account as soon as a new member registers with the code or the email address used in your email.]]></item>
-		<item name="wcf.user.invite.description.maynot"><![CDATA[The invitation will be added to your point account as soon as a new member registers with the email address used in your email.]]></item>
-		<item name="wcf.user.invite.description.must"><![CDATA[The invited has to insert the invitation code. The invitation will be added to your point account as soon as a new member registers with the correct code.]]></item>
-		<item name="wcf.user.invite.description.username"><![CDATA[The invited can alternatively just state your username during registration.]]></item>
-		<item name="wcf.user.invite.email"><![CDATA[Email]]></item>
-		<item name="wcf.user.invite.email.description"><![CDATA[Your email address is used as sender address, the recipient can directly reply to you.]]></item>
-		<item name="wcf.user.invite.email.subject"><![CDATA[Message From {@$username}: {@$subject}]]></item>
-		<item name="wcf.user.invite.emailField"><![CDATA[Receiver]]></item>
-		<item name="wcf.user.invite.emailField.description"><![CDATA[You may enter {if INVITE_EMAIL_LIMIT == 1} one email address{else} up to {@INVITE_EMAIL_LIMIT} email addresses{/if}. One email address per line.]]></item>
-		<item name="wcf.user.invite.emailField.error.blockedEmail"><![CDATA[The email address {$blockedEmail} was used recently and cannot be inserted. Try this address again in {#$days} {if $days == 1}day{else}days{/if}.]]></item>
-		<item name="wcf.user.invite.emailField.error.notValid"><![CDATA[You have entered an invalid email address: {$invalidEmail}.]]></item>
-		<item name="wcf.user.invite.emailField.error.tooMany"><![CDATA[You may only enter {if INVITE_EMAIL_LIMIT == 1} one email address{else} {INVITE_EMAIL_LIMIT} email addresses{/if}.]]></item>
-		<item name="wcf.user.invite.invite"><![CDATA[Invitation]]></item>
-		<item name="wcf.user.invite.invites"><![CDATA[Invitations]]></item>
-		<item name="wcf.user.invite.inviteSuccess"><![CDATA[Succesful invitations]]></item>
-		<item name="wcf.user.invite.inviteCode"><![CDATA[Invitation Code]]></item>
-		<item name="wcf.user.invite.inviteCode.description.may"><![CDATA[If you received an invitation code, please enter it here.]]></item>
-		<item name="wcf.user.invite.inviteCode.description.must"><![CDATA[Please enter the invitation code. It is required for an successful registration.]]></item>
-		<item name="wcf.user.invite.inviteCode.error.empty"><![CDATA[You have to enter the invitation code.]]></item>
-		<item name="wcf.user.invite.inviteCode.error.invalid"><![CDATA[The entered code is invalid or has expired.]]></item>
-		<item name="wcf.user.invite.inviteCode.username"><![CDATA[Invitation code or name]]></item>
-		<item name="wcf.user.invite.inviteCode.username.description.may"><![CDATA[If you received an invitation code, please enter it here. Alternatively, you may enter the username of the inviting member.]]></item>
-		<item name="wcf.user.invite.inviteCode.username.error.invalidUsername"><![CDATA[The entered code resp username is invalid or has expired.]]></item>
-		<item name="wcf.user.invite.list"><![CDATA[list]]></item>
-		<item name="wcf.user.invite.mail.html"><![CDATA[<h2>Hallo,</h2>
+    <category name="wcf.acp.box">
+        <item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topInviter"><![CDATA[Members with the most invitations]]></item>
+        <item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topSuccessInviter"><![CDATA[Members with the most successful invitations]]></item>
+    </category>
+
+    <category name="wcf.acp.group">
+        <item name="wcf.acp.group.option.category.user.profile.invite"><![CDATA[Invitations]]></item>
+        <item name="wcf.acp.group.option.admin.user.canManageInvite"><![CDATA[Can manage invitations]]></item>
+        <item name="wcf.acp.group.option.user.profile.canInvite"><![CDATA[Can invite]]></item>
+    </category>
+
+    <category name="wcf.acp.invite">
+        <item name="wcf.acp.invite.code"><![CDATA[Code]]></item>
+        <item name="wcf.acp.invite.delete.sure"><![CDATA[Do you really want to delete the invitation?]]></item>
+        <item name="wcf.acp.invite.emails"><![CDATA[Emails]]></item>
+        <item name="wcf.acp.invite.inviterName"><![CDATA[User]]></item>
+        <item name="wcf.acp.invite.list"><![CDATA[Invitations]]></item>
+        <item name="wcf.acp.invite.message"><![CDATA[Message]]></item>
+        <item name="wcf.acp.invite.successCount"><![CDATA[Success]]></item>
+        <item name="wcf.acp.invite.time"><![CDATA[Time]]></item>
+    </category>
+
+    <category name="wcf.acp.menu">
+        <item name="wcf.acp.menu.link.user.inviteList"><![CDATA[Invitations]]></item>
+    </category>
+
+    <category name="wcf.acp.option">
+        <item name="wcf.acp.option.module_invite"><![CDATA[Invitations]]></item>
+        <item name="wcf.acp.option.module_invite_activity"><![CDATA[Invitations - Activity]]></item>
+        <item name="wcf.acp.option.category.user.invite"><![CDATA[Invitations]]></item>
+        <item name="wcf.acp.option.category.user.invite.code"><![CDATA[Invitation Code]]></item>
+        <item name="wcf.acp.option.category.user.invite.display"><![CDATA[Display]]></item>
+        <item name="wcf.acp.option.category.user.invite.email"><![CDATA[Email]]></item>
+        <item name="wcf.acp.option.invite_code_expire"><![CDATA[Validity Period]]></item>
+        <item name="wcf.acp.option.invite_code_expire.description"><![CDATA[The code is valid for the given period of time. Enter 0 for an indefinitely valid code.]]></item>
+        <item name="wcf.acp.option.invite_code_length"><![CDATA[Use long code]]></item>
+        <item name="wcf.acp.option.invite_code_length.description"><![CDATA[A code in the form XXXX-XXXX-XXXX-XXXX is used.]]></item>
+        <item name="wcf.acp.option.invite_code_limit"><![CDATA[Limit]]></item>
+        <item name="wcf.acp.option.invite_code_limit.description"><![CDATA[Enter here how often a code can be used. Enter 0 to allow the code to be used unlimited.]]></item>
+        <item name="wcf.acp.option.invite_code_option"><![CDATA[Entry during Registration]]></item>
+        <item name="wcf.acp.option.invite_code_option.may"><![CDATA[optional]]></item>
+        <item name="wcf.acp.option.invite_code_option.maynot"><![CDATA[prevent]]></item>
+        <item name="wcf.acp.option.invite_code_option.must"><![CDATA[enforce]]></item>
+        <item name="wcf.acp.option.invite_code_option.description"><![CDATA[“enforce” will display the input field for the code and the correct code has to be inserted for a successful registration. Choosing “prevent” will hide the input field. „optional“ will display it and users may enter a code or not.]]></item>
+        <item name="wcf.acp.option.invite_code_username"><![CDATA[Username]]></item>
+        <item name="wcf.acp.option.invite_code_username.description"><![CDATA[The invited person may alternatively enter the username of the inviting member.]]></item>
+        <item name="wcf.acp.option.invite_display_box_entries"><![CDATA[Box Entries]]></item>
+        <item name="wcf.acp.option.invite_display_message_sidebar"><![CDATA[Show in message sidebar]]></item>
+        <item name="wcf.acp.option.invite_display_userInformation"><![CDATA[Show with user information]]></item>
+        <item name="wcf.acp.option.invite_email_limit"><![CDATA[Limit]]></item>
+        <item name="wcf.acp.option.invite_email_limit.description"><![CDATA[You may only enter the given number of different email addresses.]]></item>
+        <item name="wcf.acp.option.invite_email_time"><![CDATA[Spam Protection]]></item>
+        <item name="wcf.acp.option.invite_email_time.description"><![CDATA[You may re-use an email address for an invitation only after the given amount of time.]]></item>
+    </category>
+
+    <category name="wcf.acp.rebuildData">
+        <item name="wcf.acp.rebuildData.com.uz.wcf.invitation"><![CDATA[Rebuild Invitations]]></item>
+        <item name="wcf.acp.rebuildData.com.uz.wcf.invitation.description"><![CDATA[Rebuild invitation counts and recalculates the activity points]]></item>
+    </category>
+
+    <category name="wcf.acp.stat">
+        <item name="wcf.acp.stat.com.uz.wcf.invitation.submit"><![CDATA[Invitations]]></item>
+        <item name="wcf.acp.stat.com.uz.wcf.invitation.success"><![CDATA[Successful invitations]]></item>
+    </category>
+
+    <category name="wcf.acp.user">
+        <item name="wcf.acp.user.bulkProcessing.invitationDelete"><![CDATA[Delete Invitations]]></item>
+    </category>
+
+    <category name="wcf.user">
+        <item name="wcf.user.activityPoint.objectType.com.uz.wcf.invitation.activityPointEvent.submit"><![CDATA[Invitations]]></item>
+        <item name="wcf.user.activityPoint.objectType.com.uz.wcf.invitation.activityPointEvent.success"><![CDATA[Successful invitations]]></item>
+        <item name="wcf.user.sortField.invites"><![CDATA[Invitations]]></item>
+        <item name="wcf.user.sortField.inviteSuccess"><![CDATA[Succesful invitations]]></item>
+    </category>
+
+    <category name="wcf.user.condition">
+        <item name="wcf.user.condition.invites"><![CDATA[Created invitations]]></item>
+        <item name="wcf.user.condition.inviteSuccess"><![CDATA[Successfully invited members]]></item>
+    </category>
+
+    <category name="wcf.user.invite">
+        <item name="wcf.user.invite.add"><![CDATA[Create invitation]]></item>
+        <item name="wcf.user.invite.add.success"><![CDATA[The invitation was successfully created.]]></item>
+        <item name="wcf.user.invite.box.invites"><![CDATA[{#$userProfile->invites} {if $userProfile->invites == 1}invitation{else}invitations{/if}]]></item>
+        <item name="wcf.user.invite.box.iinviteSuccess"><![CDATA[{#$userProfile->inviteSuccess} {if $userProfile->inviteSuccess == 1}invitation{else}invitations{/if}]]></item>
+        <item name="wcf.user.invite.code"><![CDATA[Invitation Code]]></item>
+        <item name="wcf.user.invite.code.description"><![CDATA[You may send the code by email or note it for another mean of communication or personal handing over.]]></item>
+        <item name="wcf.user.invite.code.share"><![CDATA[personal handing over]]></item>
+        <item name="wcf.user.invite.code.validity"><![CDATA[The code is {if INVITE_CODE_EXPIRE}valid for {INVITE_CODE_EXPIRE} {if INVITE_CODE_EXPIRE == 1}day{else}days{/if}{else}valid permanently{/if}.<br>Click “Submit” at the end of the form to save the invitation and to activate the code.]]></item>
+        <item name="wcf.user.invite.description.may"><![CDATA[The invited may insert the invitation code. The invitation will be added to your point account as soon as a new member registers with the code or the email address used in your email.]]></item>
+        <item name="wcf.user.invite.description.maynot"><![CDATA[The invitation will be added to your point account as soon as a new member registers with the email address used in your email.]]></item>
+        <item name="wcf.user.invite.description.must"><![CDATA[The invited has to insert the invitation code. The invitation will be added to your point account as soon as a new member registers with the correct code.]]></item>
+        <item name="wcf.user.invite.description.username"><![CDATA[The invited can alternatively just state your username during registration.]]></item>
+        <item name="wcf.user.invite.email"><![CDATA[Email]]></item>
+        <item name="wcf.user.invite.email.description"><![CDATA[Your email address is used as sender address, the recipient can directly reply to you.]]></item>
+        <item name="wcf.user.invite.email.subject"><![CDATA[Message From {@$username}: {@$subject}]]></item>
+        <item name="wcf.user.invite.emailField"><![CDATA[Receiver]]></item>
+        <item name="wcf.user.invite.emailField.description"><![CDATA[You may enter {if INVITE_EMAIL_LIMIT == 1} one email address{else} up to {@INVITE_EMAIL_LIMIT} email addresses{/if}. One email address per line.]]></item>
+        <item name="wcf.user.invite.emailField.error.blockedEmail"><![CDATA[The email address {$blockedEmail} was used recently and cannot be inserted. Try this address again in {#$days} {if $days == 1}day{else}days{/if}.]]></item>
+        <item name="wcf.user.invite.emailField.error.notValid"><![CDATA[You have entered an invalid email address: {$invalidEmail}.]]></item>
+        <item name="wcf.user.invite.emailField.error.tooMany"><![CDATA[You may only enter {if INVITE_EMAIL_LIMIT == 1} one email address{else} {INVITE_EMAIL_LIMIT} email addresses{/if}.]]></item>
+        <item name="wcf.user.invite.invite"><![CDATA[Invitation]]></item>
+        <item name="wcf.user.invite.invites"><![CDATA[Invitations]]></item>
+        <item name="wcf.user.invite.inviteSuccess"><![CDATA[Succesful invitations]]></item>
+        <item name="wcf.user.invite.inviteCode"><![CDATA[Invitation Code]]></item>
+        <item name="wcf.user.invite.inviteCode.description.may"><![CDATA[If you received an invitation code, please enter it here.]]></item>
+        <item name="wcf.user.invite.inviteCode.description.must"><![CDATA[Please enter the invitation code. It is required for an successful registration.]]></item>
+        <item name="wcf.user.invite.inviteCode.error.empty"><![CDATA[You have to enter the invitation code.]]></item>
+        <item name="wcf.user.invite.inviteCode.error.invalid"><![CDATA[The entered code is invalid or has expired.]]></item>
+        <item name="wcf.user.invite.inviteCode.username"><![CDATA[Invitation code or name]]></item>
+        <item name="wcf.user.invite.inviteCode.username.description.may"><![CDATA[If you received an invitation code, please enter it here. Alternatively, you may enter the username of the inviting member.]]></item>
+        <item name="wcf.user.invite.inviteCode.username.error.invalidUsername"><![CDATA[The entered code resp username is invalid or has expired.]]></item>
+        <item name="wcf.user.invite.list"><![CDATA[list]]></item>
+        <item name="wcf.user.invite.mail.html"><![CDATA[<h2>Hallo,</h2>
 
 <p>„{$username}“ sent you a message on <a href="{link isHtmlEmail=true}{/link}">{PAGE_TITLE|language}</a>:</p>
 
 <p>{@$message|newlineToBreak}</p>]]></item>
-		<item name="wcf.user.invite.mail.plaintext"><![CDATA[Hallo,
+        <item name="wcf.user.invite.mail.plaintext"><![CDATA[Hallo,
 
 “{@$username}” sent you a message on {@PAGE_TITLE|language} [URL:{link isEmail=true}{/link}]:
 
 {@$message}]]></item>
-		<item name="wcf.user.invite.method"><![CDATA[Distribution]]></item>
-		<item name="wcf.user.invite.method.copy"><![CDATA[personally]]></item>
-		<item name="wcf.user.invite.method.email"><![CDATA[Email]]></item>
-		<item name="wcf.user.invite.myInvites"><![CDATA[My Invitations]]></item>
-		<item name="wcf.user.invite.myInviteSuccess"><![CDATA[{if $count == 1}{$count} user{else}{#$count} users{/if} registered after your invitation or were stating your username during registration.]]></item>
-		<item name="wcf.user.invite.myInvites.username"><![CDATA[Username given]]></item>
-		<item name="wcf.user.invite.noInvites"><![CDATA[You have not yet created an invitation.]]></item>
-		<item name="wcf.user.invite.recentActivity.submit"><![CDATA[Has created an <a href="{link controller='InviteAdd'}{/link}">invitation</a>.]]></item>
-		<item name="wcf.user.invite.subject"><![CDATA[Subject]]></item>
-		<item name="wcf.user.invite.subject.default"><![CDATA[Invitation for “{PAGE_TITLE|language}”]]></item>
-		<item name="wcf.user.invite.subject.error.tooLong"><![CDATA[The subject is limited to 255 characters.]]></item>
-		<item name="wcf.user.invite.success"><![CDATA[{#$invite->successCount} times successful]]></item>
-		<item name="wcf.user.invite.message"><![CDATA[Message]]></item>
-		<item name="wcf.user.invite.message.default"><![CDATA[Hallo,
-		
+        <item name="wcf.user.invite.method"><![CDATA[Distribution]]></item>
+        <item name="wcf.user.invite.method.copy"><![CDATA[personally]]></item>
+        <item name="wcf.user.invite.method.email"><![CDATA[Email]]></item>
+        <item name="wcf.user.invite.myInvites"><![CDATA[My Invitations]]></item>
+        <item name="wcf.user.invite.myInviteSuccess"><![CDATA[{if $count == 1}{$count} user{else}{#$count} users{/if} registered after your invitation or were stating your username during registration.]]></item>
+        <item name="wcf.user.invite.myInvites.username"><![CDATA[Username given]]></item>
+        <item name="wcf.user.invite.noInvites"><![CDATA[You have not yet created an invitation.]]></item>
+        <item name="wcf.user.invite.recentActivity.submit"><![CDATA[Has created an <a href="{link controller='InviteAdd'}{/link}">invitation</a>.]]></item>
+        <item name="wcf.user.invite.subject"><![CDATA[Subject]]></item>
+        <item name="wcf.user.invite.subject.default"><![CDATA[Invitation for “{PAGE_TITLE|language}”]]></item>
+        <item name="wcf.user.invite.subject.error.tooLong"><![CDATA[The subject is limited to 255 characters.]]></item>
+        <item name="wcf.user.invite.success"><![CDATA[{#$invite->successCount} times successful]]></item>
+        <item name="wcf.user.invite.message"><![CDATA[Message]]></item>
+        <item name="wcf.user.invite.message.default"><![CDATA[Hallo,
+
 Site: {PAGE_TITLE|language}
 
 Link: {link controller=''}{/link}
@@ -147,25 +147,25 @@ Link: {link controller=''}{/link}
 
 
 Best regards]]></item>
-		<item name="wcf.user.invite.message.error.noCode"><![CDATA[Your email contains no or an incorrect code.]]></item>
-	</category>
-	
-	<category name="wcf.user.menu">
-		<item name="wcf.user.menu.invite"><![CDATA[Invitations]]></item>
-		<item name="wcf.user.menu.invite.add"><![CDATA[Create Invitation]]></item>
-		<item name="wcf.user.menu.invite.list"><![CDATA[My Invitations]]></item>
-	</category>
-	
-	<category name="wcf.user.notification">
-		<item name="wcf.user.notification.com.uz.wcf.invitation"><![CDATA[Invitations]]></item>
-		<item name="wcf.user.notification.com.uz.wcf.invitation.success"><![CDATA[One of your invitations was successful]]></item>
-		<item name="wcf.user.notification.invite.title"><![CDATA[Successful invitation]]></item>
-		<item name="wcf.user.notification.invite.title.stacked"><![CDATA[{#$timesTriggered} successful invitations]]></item>
-		<item name="wcf.user.notification.invite.message"><![CDATA[{if !$author->userID}A guest{else}{@$author->getAnchorTag()}{/if} has registered after your invitation or was stating your username during registration.]]></item>
-		<item name="wcf.user.notification.invite.message.stacked"><![CDATA[{if $count < 4}{@$authors[0]->getAnchorTag()}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->getAnchorTag()}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->getAnchorTag()}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->getAnchorTag()}{if $guestTimesTriggered},{else} and{/if} {#$others} more users {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} have registered after your invitation or wer stating your username during registration.]]></item>
-	</category>
-	
-	<category name="wcf.user.recentActivity">
-		<item name="wcf.user.recentActivity.com.uz.wcf.invitation.recentActivityEvent.submit"><![CDATA[Invitation]]></item>
-	</category>
+        <item name="wcf.user.invite.message.error.noCode"><![CDATA[Your email contains no or an incorrect code.]]></item>
+    </category>
+
+    <category name="wcf.user.menu">
+        <item name="wcf.user.menu.invite"><![CDATA[Invitations]]></item>
+        <item name="wcf.user.menu.invite.add"><![CDATA[Create Invitation]]></item>
+        <item name="wcf.user.menu.invite.list"><![CDATA[My Invitations]]></item>
+    </category>
+
+    <category name="wcf.user.notification">
+        <item name="wcf.user.notification.com.uz.wcf.invitation"><![CDATA[Invitations]]></item>
+        <item name="wcf.user.notification.com.uz.wcf.invitation.success"><![CDATA[One of your invitations was successful]]></item>
+        <item name="wcf.user.notification.invite.title"><![CDATA[Successful invitation]]></item>
+        <item name="wcf.user.notification.invite.title.stacked"><![CDATA[{#$timesTriggered} successful invitations]]></item>
+        <item name="wcf.user.notification.invite.message"><![CDATA[{if !$author->userID}A guest{else}{@$author->getAnchorTag()}{/if} has registered after your invitation or was stating your username during registration.]]></item>
+        <item name="wcf.user.notification.invite.message.stacked"><![CDATA[{if $count < 4}{@$authors[0]->getAnchorTag()}{if $count != 1}{if $count == 2 && !$guestTimesTriggered} and {else}, {/if}{@$authors[1]->getAnchorTag()}{if $count == 3}{if !$guestTimesTriggered} and {else}, {/if} {@$authors[2]->getAnchorTag()}{/if}{/if}{if $guestTimesTriggered} and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{else}{@$authors[0]->getAnchorTag()}{if $guestTimesTriggered},{else} and{/if} {#$others} more users {if $guestTimesTriggered}and {if $guestTimesTriggered == 1}a guest{else}guests{/if}{/if}{/if} have registered after your invitation or wer stating your username during registration.]]></item>
+    </category>
+
+    <category name="wcf.user.recentActivity">
+        <item name="wcf.user.recentActivity.com.uz.wcf.invitation.recentActivityEvent.submit"><![CDATA[Invitation]]></item>
+    </category>
 </language>
