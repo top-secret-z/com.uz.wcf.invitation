@@ -99,17 +99,17 @@ class InviteAddForm extends AbstractForm
         }
 
         // Template 0 = display, 1 = locked
-        if(INVITE_CODE_LIMIT_UNUSED == 0){
+        if (INVITE_CODE_LIMIT_UNUSED == 0) {
             $this->unusedCode = 0;
-        }elseif(INVITE_CODE_LIMIT_UNUSED > Invite::checkUnusedCodeExist()){
+        } elseif (INVITE_CODE_LIMIT_UNUSED > Invite::checkUnusedCodeExist()) {
             $this->unusedCode = 0;
-        }else{
+        } else {
             $this->unusedCode = 1;
         }
 
-        if(INVITE_EMAIL_LIMIT == 0){
+        if (INVITE_EMAIL_LIMIT == 0) {
             $this->emailCode = 1;
-        }else{
+        } else {
             $this->emailCode = 0;
         }
 
