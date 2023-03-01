@@ -38,9 +38,9 @@ class InviteSuccessUserNotificationEvent extends AbstractUserNotificationEvent
     protected $stackable = true;
 
     /**
-     * @inheritDoc
+     * @throws \wcf\system\exception\SystemException
      */
-    protected function prepare()
+    protected function prepare(): void
     {
         UserProfileRuntimeCache::getInstance()->cacheObjectID($this->getUserNotificationObject()->objectID);
     }
@@ -48,9 +48,10 @@ class InviteSuccessUserNotificationEvent extends AbstractUserNotificationEvent
     /**
      * @inheritDoc
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         $count = \count($this->getAuthors());
+
         if ($count > 1) {
             return $this->getLanguage()->getDynamicVariable('wcf.user.notification.invite.title.stacked', [
                 'count' => $count,
@@ -64,13 +65,15 @@ class InviteSuccessUserNotificationEvent extends AbstractUserNotificationEvent
     /**
      * @inheritDoc
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         $authors = $this->getAuthors();
+
         if (\count($authors) > 1) {
             if (isset($authors[0])) {
                 unset($authors[0]);
             }
+
             $count = \count($authors);
 
             return $this->getLanguage()->getDynamicVariable('wcf.user.notification.invite.message.stacked', [
@@ -97,8 +100,10 @@ class InviteSuccessUserNotificationEvent extends AbstractUserNotificationEvent
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public function getLink()
+    public function getLink(): string
     {
         return LinkHandler::getInstance()->getLink('InviteListUser');
     }
@@ -106,7 +111,7 @@ class InviteSuccessUserNotificationEvent extends AbstractUserNotificationEvent
     /**
      * @inheritDoc
      */
-    public function getEventHash()
+    public function getEventHash(): string
     {
         return \sha1($this->eventID . '-' . $this->notification->userID);
     }
@@ -114,7 +119,7 @@ class InviteSuccessUserNotificationEvent extends AbstractUserNotificationEvent
     /**
      * @inheritDoc
      */
-    public function supportsEmailNotification()
+    public function supportsEmailNotification(): bool
     {
         return false;
     }

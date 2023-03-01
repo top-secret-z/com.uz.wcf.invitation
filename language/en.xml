@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/language.xsd" languagecode="en" languagename="English" countrycode="gb">
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com https://www.woltlab.com/XSD/5.4/language.xsd" languagename="English" languagecode="en" countrycode="gb">
     <category name="wcf.acp.box">
         <item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topInviter"><![CDATA[Members with the most invitations]]></item>
         <item name="wcf.acp.box.boxController.com.uz.wcf.invitation.topSuccessInviter"><![CDATA[Members with the most successful invitations]]></item>

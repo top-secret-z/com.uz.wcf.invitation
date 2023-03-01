@@ -23,15 +23,25 @@
 
 namespace wcf\data\user\invite;
 
+use Exception;
 use wcf\data\DatabaseObject;
 use wcf\data\user\invite\success\InviteSuccessList;
-use wcf\data\user\User;
 use wcf\system\cache\runtime\UserRuntimeCache;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
 
 /**
- * Represents an invitation.
+ * @property int $inviteID
+ * @property string $code
+ * @property int $codeExpires
+ * @property string $emails
+ * @property int $inviterID
+ * @property string $inviterName
+ * @property string $message
+ * @property string $subject
+ * @property int $successCount
+ * @property int $time
+ * @property string $additionalData
  */
 class Invite extends DatabaseObject
 {
@@ -55,36 +65,37 @@ class Invite extends DatabaseObject
 
     /**
      * Returns 0 if the code does not exist or has expired
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
      */
-    public static function checkCodeExist($code)
+    public static function checkCodeExist(string $code): int
     {
         // get code and check expiration
-        $sql = "SELECT    *
-                FROM    wcf" . WCF_N . "_user_invite
-                WHERE    code = ?";
-        $statement = WCF::getDB()->prepareStatement($sql, 1);
+        $sql = "SELECT *
+                FROM wcf1_user_invite
+                WHERE code = ?";
+        $statement = WCF::getDB()->prepare($sql, 1);
         $statement->execute([$code]);
         $row = $statement->fetchArray();
 
         if (!$row) {
             return 0;
         }
+
         if (INVITE_CODE_EXPIRE && $row['time'] + INVITE_CODE_EXPIRE * 86400 < TIME_NOW) {
             return 0;
         }
 
         // code exists, check usage
-        $sql = "SELECT        used
-                FROM        wcf" . WCF_N . "_user_invite_code
-                WHERE        code = ?";
-        $statement = WCF::getDB()->prepareStatement($sql, 1);
+        $sql = "SELECT used
+                FROM wcf1_user_invite_code
+                WHERE code = ?";
+        $statement = WCF::getDB()->prepare($sql, 1);
         $statement->execute([$code]);
         $used = $statement->fetchColumn();
 
-        if (!$used || !INVITE_CODE_LIMIT) {
-            return 1;
-        }
-        if (INVITE_CODE_LIMIT && $used < INVITE_CODE_LIMIT) {
+        if (!$used || !INVITE_CODE_LIMIT || (INVITE_CODE_LIMIT && $used < INVITE_CODE_LIMIT)) {
             return 1;
         }
 
@@ -93,13 +104,15 @@ class Invite extends DatabaseObject
 
     /**
      * Returns invite by code
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
      */
-    public static function getInviteByCode($code)
+    public static function getInviteByCode(string $code): self
     {
-        $sql = "SELECT        *
-                FROM        wcf" . WCF_N . "_user_invite
-                WHERE        code = ?";
-        $statement = WCF::getDB()->prepareStatement($sql);
+        $sql = "SELECT *
+                FROM wcf1_user_invite
+                WHERE code = ?";
+        $statement = WCF::getDB()->prepare($sql);
         $statement->execute([$code]);
         $row = $statement->fetchArray();
         if (!$row) {
@@ -111,26 +124,31 @@ class Invite extends DatabaseObject
 
     /**
      * Returns invite by email (latest inviter)
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
      */
-    public static function getInviteByEmail($email)
+    public static function getInviteByEmail(string $email): self
     {
-        $sql = "SELECT        inviteID
-                FROM        wcf" . WCF_N . "_user_invite_email
-                WHERE        email = ?
-                ORDER BY    time DESC";
-        $statement = WCF::getDB()->prepareStatement($sql, 1);
+        $sql = "SELECT inviteID
+                FROM wcf1_user_invite_email
+                WHERE email = ?
+                ORDER BY time DESC";
+        $statement = WCF::getDB()->prepare($sql, 1);
         $statement->execute([$email]);
         $row = $statement->fetchArray();
+
         if (!$row) {
             return new self(null, []);
         }
 
-        $sql = "SELECT        *
-                FROM        wcf" . WCF_N . "_user_invite
-                WHERE        inviteID = ?";
-        $statement = WCF::getDB()->prepareStatement($sql);
+        $sql = "SELECT *
+                FROM wcf1_user_invite
+                WHERE inviteID = ?";
+        $statement = WCF::getDB()->prepare($sql);
         $statement->execute([$row['inviteID']]);
         $row = $statement->fetchArray();
+
         if (!$row) {
             $row = [];
         }
@@ -140,15 +158,18 @@ class Invite extends DatabaseObject
 
     /**
      * Return 0 if email is not used within time otherwise return days
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
      */
-    public static function checkEmailBlocked($email)
+    public static function checkEmailBlocked(string $email)
     {
-        $sql = "SELECT        time
-                FROM        wcf" . WCF_N . "_user_invite_email
-                WHERE        email = ?
-                ORDER BY    time DESC";
-        $statement = WCF::getDB()->prepareStatement($sql, 1);
+        $sql = "SELECT time
+                FROM wcf1_user_invite_email
+                WHERE email = ?
+                ORDER BY time DESC";
+        $statement = WCF::getDB()->prepare($sql, 1);
         $statement->execute([$email]);
+
         if ($row = $statement->fetchArray()) {
             if ($row['time'] + INVITE_EMAIL_TIME * 86400 < TIME_NOW) {
                 return 0;
@@ -162,8 +183,10 @@ class Invite extends DatabaseObject
 
     /**
      * returns names of users who registered after invitation
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public function getUsernames()
+    public function getUsernames(): string
     {
         $nameList = new InviteSuccessList();
         $nameList->getConditionBuilder()->add('inviteID = ?', [$this->inviteID]);
@@ -171,10 +194,16 @@ class Invite extends DatabaseObject
         $nameList->readObjects();
 
         $names = [];
+
+        /** @var \wcf\data\user\invite\success\InviteSuccess $name */
         foreach ($nameList->getObjects() as $name) {
             if ($name->userID) {
                 $user = UserRuntimeCache::getInstance()->getObject($name->userID);
-                $names[] = '<a class="userLink" href="' . $user->getLink() . '" data-user-id="' . $name->userID . '">' . $name->username . '</a>';
+
+                if (null !== $user) {
+                    $names[] = '<a class="userLink" href="' . $user->getLink(
+                    ) . '" data-user-id="' . $name->userID . '">' . $name->username . '</a>';
+                }
             } else {
                 $names[] = $name->username;
             }
@@ -186,24 +215,26 @@ class Invite extends DatabaseObject
     /**
      * returns formatted message
      */
-    public function getExcerpt($maxLength = 255)
+    public function getExcerpt(int $maxLength = 255): string
     {
         return StringUtil::truncateHTML($this->message, $maxLength);
     }
 
     /**
      * Returns 0 if unused codes does not exist
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryException
      */
-    public static function checkUnusedCodeExist()
+    public static function checkUnusedCodeExist(): int
     {
         // code unused limit exists, check unused usage
         $sCount = 0;
-        $sql = "SELECT       successCount
-                FROM         wcf" . WCF_N . "_user_invite
-                WHERE        inviterID = " . WCF::getUser()->userID . "
-                ORDER BY     successCount ASC";
-        $statement = WCF::getDB()->prepareStatement($sql);
-        $statement->execute();
+        $sql = "SELECT successCount
+                FROM wcf1_user_invite
+                WHERE inviterID = ?
+                ORDER BY successCount";
+        $statement = WCF::getDB()->prepare($sql);
+        $statement->execute([WCF::getUser()->userID]);
         while ($key = $statement->fetchArray()) {
             if ($key > 0) {
                 $sCount++;
@@ -215,17 +246,22 @@ class Invite extends DatabaseObject
 
     /**
      * Returns a code xxxx-xxxx-xxxx-xxxx
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws Exception
      */
-    public static function getNewCode()
+    public static function getNewCode(): string
     {
         while (1) {
             $code = \strtoupper(\implode('-', \str_split(\bin2hex(\random_bytes(8)), 4)));
-            $sql = "SELECT    *
-                    FROM    wcf" . WCF_N . "_user_invite
-                    WHERE    code = ?";
-            $statement = WCF::getDB()->prepareStatement($sql);
+
+            $sql = "SELECT *
+                    FROM wcf1_user_invite
+                    WHERE code = ?";
+            $statement = WCF::getDB()->prepare($sql);
             $statement->execute([$code]);
             $row = $statement->fetchArray();
+
             if (!$row) {
                 return $code;
             }

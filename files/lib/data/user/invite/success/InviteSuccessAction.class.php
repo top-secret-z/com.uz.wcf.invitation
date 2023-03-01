@@ -25,9 +25,6 @@ namespace wcf\data\user\invite\success;
 
 use wcf\data\AbstractDatabaseObjectAction;
 
-/**
- * Executes invitation success-related actions.
- */
 class InviteSuccessAction extends AbstractDatabaseObjectAction
 {
     /**

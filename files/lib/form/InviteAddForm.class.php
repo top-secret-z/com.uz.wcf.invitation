@@ -40,6 +40,7 @@ use wcf\system\user\activity\point\UserActivityPointHandler;
 use wcf\system\WCF;
 use wcf\util\ArrayUtil;
 use wcf\util\HeaderUtil;
+use wcf\util\PasswordUtil;
 use wcf\util\StringUtil;
 use wcf\util\UserUtil;
 
@@ -83,23 +84,36 @@ class InviteAddForm extends AbstractForm
     public $user;
 
     /**
-     * @inheritDoc
+     * @var int
      */
-    public function readParameters()
+    private $unusedCode = 0;
+
+    /**
+     * @var int
+     */
+    private $emailCode = 0;
+
+    /**
+     * @inheritDoc
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     */
+    public function readParameters(): void
     {
         parent::readParameters();
 
         // set user
         $this->user = WCF::getUser();
 
-        // presets
-        $this->code = \base_convert(\uniqid(), 16, 36);
         if (INVITE_CODE_LENGTH) {
             $this->code = Invite::getNewCode();
+        } else {
+            $this->code = PasswordUtil::getRandomPassword();
         }
 
         // Template 0 = display, 1 = locked
-        if (INVITE_CODE_LIMIT_UNUSED == 0) {
+        if (!INVITE_CODE_LIMIT_UNUSED) {
             $this->unusedCode = 0;
         } elseif (INVITE_CODE_LIMIT_UNUSED > Invite::checkUnusedCodeExist()) {
             $this->unusedCode = 0;
@@ -107,7 +121,7 @@ class InviteAddForm extends AbstractForm
             $this->unusedCode = 1;
         }
 
-        if (INVITE_EMAIL_LIMIT == 0) {
+        if (!INVITE_EMAIL_LIMIT) {
             $this->emailCode = 1;
         } else {
             $this->emailCode = 0;
@@ -136,52 +150,51 @@ class InviteAddForm extends AbstractForm
     /**
      * @inheritDoc
      */
-    public function readData()
-    {
-        parent::readData();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function readFormParameters()
+    public function readFormParameters(): void
     {
         parent::readFormParameters();
 
         if (isset($_POST['code'])) {
             $this->code = $_POST['code'];
         }
+
         if (isset($_POST['emailField'])) {
             $this->emailField = StringUtil::trim($_POST['emailField']);
         }
+
         if (isset($_POST['message'])) {
             $this->message = StringUtil::trim($_POST['message']);
         }
+
         if (isset($_POST['subject'])) {
             $this->subject = StringUtil::trim($_POST['subject']);
         }
-        if (INVITE_CODE_OPTION != 'maynot') {
-            if (isset($_POST['method'])) {
-                $this->method = $_POST['method'];
-            }
+
+        if ((INVITE_CODE_OPTION !== 'maynot') && isset($_POST['method'])) {
+            $this->method = $_POST['method'];
         }
     }
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\UserInputException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
      */
-    public function validate()
+    public function validate(): void
     {
         parent::validate();
 
         // check email
-        if ($this->method == 'email') {
+        if ($this->method === 'email') {
             // emailField not empty
             if (empty($this->emailField)) {
                 throw new UserInputException('emailField');
             }
+
             // emails must be correct and are limited
             $emails = \array_unique(ArrayUtil::trim(\explode("\n", $this->emailField)));
+
             if (\count($emails) > INVITE_EMAIL_LIMIT) {
                 throw new UserInputException('emailField', 'tooMany');
             }
@@ -204,6 +217,7 @@ class InviteAddForm extends AbstractForm
                     throw new UserInputException('emailField', 'blockedEmail');
                 }
             }
+
             $this->emailField = \implode(', ', $emails);
 
             // subject not empty and < 256 chars
@@ -220,10 +234,12 @@ class InviteAddForm extends AbstractForm
             }
 
             // either subject or message must contain the code, if required
-            if (INVITE_CODE_OPTION == 'must') {
-                if (\mb_stripos($this->subject, $this->code) === false && \mb_stripos($this->message, $this->code) === false) {
-                    throw new UserInputException('message', 'noCode');
-                }
+            if (
+                INVITE_CODE_OPTION === 'must'
+                && \mb_stripos($this->subject, $this->code) === false
+                && \mb_stripos($this->message, $this->code) === false
+            ) {
+                throw new UserInputException('message', 'noCode');
             }
         }
     }
@@ -231,7 +247,7 @@ class InviteAddForm extends AbstractForm
     /**
      * @inheritDoc
      */
-    public function assignVariables()
+    public function assignVariables(): void
     {
         parent::assignVariables();
 
@@ -250,8 +266,11 @@ class InviteAddForm extends AbstractForm
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\PermissionDeniedException
+     * @throws \wcf\system\exception\SystemException
      */
-    public function show()
+    public function show(): void
     {
         // set active tab
         UserMenu::getInstance()->setActiveMenuItem('wcf.user.menu.invite.add');
@@ -261,19 +280,21 @@ class InviteAddForm extends AbstractForm
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public function save()
+    public function save(): void
     {
         parent::save();
 
         $data = [
             'code' => $this->code,
             'codeExpires' => INVITE_CODE_EXPIRE ? TIME_NOW + 86400 * INVITE_CODE_EXPIRE : 0,
-            'emails' => ($this->method == 'email' ? $this->emailField : ''),
+            'emails' => ($this->method === 'email' ? $this->emailField : ''),
             'inviterID' => $this->user->userID,
             'inviterName' => $this->user->username,
-            'message' => ($this->method == 'email' ? $this->message : ''),
-            'subject' => ($this->method == 'email' ? $this->subject : ''),
+            'message' => ($this->method === 'email' ? $this->message : ''),
+            'subject' => ($this->method === 'email' ? $this->subject : ''),
             'time' => TIME_NOW,
             'additionalData' => '',
         ];
@@ -289,18 +310,19 @@ class InviteAddForm extends AbstractForm
         ]);
 
         // send emails and store them
-        if ($this->method == 'email') {
+        if ($this->method === 'email') {
             $language = WCF::getLanguage();
             $receivers = \explode(', ', $this->emailField);
-
             $sender = WCF::getUser();
-            $replyTo = new UserMailBox($sender);
+
+            // build message data
             $messageData = [
                 'message' => $this->message,
                 'username' => $sender->username,
             ];
 
             foreach ($receivers as $receiver) {
+                // build mail
                 $email = new Email();
                 $email->addRecipient(new Mailbox($receiver, null, $language));
                 $email->setSubject($sender->getLanguage()->getDynamicVariable('wcf.user.invite.email.subject', [
@@ -308,19 +330,33 @@ class InviteAddForm extends AbstractForm
                     'subject' => $this->subject,
                 ]));
                 $email->setBody(new MimePartFacade([
-                    new RecipientAwareTextMimePart('text/html', 'invite_email', 'wcf', $messageData),
-                    new RecipientAwareTextMimePart('text/plain', 'invite_email', 'wcf', $messageData),
+                    new RecipientAwareTextMimePart(
+                        'text/html',
+                        'invite_email',
+                        'wcf',
+                        $messageData
+                    ),
+
+                    new RecipientAwareTextMimePart(
+                        'text/plain',
+                        'invite_email',
+                        'wcf',
+                        $messageData
+                    ),
                 ]));
+
+                // add reply-to tag
                 $email->setReplyTo(new UserMailbox($sender));
+
+                // send mail
                 $email->send();
             }
 
             // block emails
             WCF::getDB()->beginTransaction();
-            $sql = "INSERT INTO    wcf" . WCF_N . "_user_invite_email
-                        (email, time, inviteID)
-                    VALUES        (?, ?, ?)";
-            $statement = WCF::getDB()->prepareStatement($sql);
+            $sql = "INSERT INTO wcf1_user_invite_email (email, time, inviteID)
+                    VALUES (?, ?, ?)";
+            $statement = WCF::getDB()->prepare($sql);
 
             foreach ($receivers as $receiver) {
                 if (\mb_strlen($receiver) < 256) {
@@ -332,9 +368,17 @@ class InviteAddForm extends AbstractForm
 
         // recent activity and points (always)
         if (MODULE_INVITE_ACTIVITY) {
-            UserActivityEventHandler::getInstance()->fireEvent('com.uz.wcf.invitation.recentActivityEvent.submit', $inviteID);
+            UserActivityEventHandler::getInstance()->fireEvent(
+                'com.uz.wcf.invitation.recentActivityEvent.submit',
+                $inviteID
+            );
         }
-        UserActivityPointHandler::getInstance()->fireEvent('com.uz.wcf.invitation.activityPointEvent.submit', $inviteID, $this->user->userID);
+
+        UserActivityPointHandler::getInstance()->fireEvent(
+            'com.uz.wcf.invitation.activityPointEvent.submit',
+            $inviteID,
+            $this->user->userID
+        );
 
         // reset box cache
         InviteTopMembersBoxCacheBuilder::getInstance()->reset();
@@ -345,7 +389,11 @@ class InviteAddForm extends AbstractForm
         WCF::getTPL()->assign('success', true);
 
         // forward to list page
-        HeaderUtil::delayedRedirect(LinkHandler::getInstance()->getLink('InviteListUser'), WCF::getLanguage()->get('wcf.user.invite.add.success'), 1);
+        HeaderUtil::delayedRedirect(
+            LinkHandler::getInstance()->getLink('InviteListUser'),
+            WCF::getLanguage()->get('wcf.user.invite.add.success'),
+            1
+        );
 
         exit;
     }

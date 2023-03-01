@@ -24,7 +24,6 @@
 namespace wcf\data\user\invite;
 
 use wcf\data\AbstractDatabaseObjectAction;
-use wcf\data\IDeleteAction;
 use wcf\data\user\invite\success\InviteSuccessAction;
 use wcf\data\user\invite\success\InviteSuccessList;
 use wcf\data\user\User;
@@ -34,10 +33,7 @@ use wcf\system\cache\builder\InviteTopSuccessMembersBoxCacheBuilder;
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
 
-/**
- * Executes invitation-related actions.
- */
-class InviteAction extends AbstractDatabaseObjectAction implements IDeleteAction
+class InviteAction extends AbstractDatabaseObjectAction
 {
     /**
      * @inheritDoc
@@ -62,7 +58,7 @@ class InviteAction extends AbstractDatabaseObjectAction implements IDeleteAction
     /**
      * @inheritDoc
      */
-    protected $requireACP = [];
+    protected $requireACP;
 
     /**
      * @inheritDoc
@@ -72,23 +68,28 @@ class InviteAction extends AbstractDatabaseObjectAction implements IDeleteAction
     /**
      * @inheritDoc
      */
-    public function validateDelete()
+    public function validateDelete(): void
     {
     }
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
     public function delete()
     {
         $itemsToUserSubmit = $itemsToUserSuccess = [];
+
         foreach ($this->objectIDs as $id) {
             $invite = new Invite($id);
+
             if (!$invite->inviteID) {
                 continue;
             }
 
             $user = new User($invite->inviterID);
+
             if (!$user->userID) {
                 continue;
             }
@@ -104,30 +105,42 @@ class InviteAction extends AbstractDatabaseObjectAction implements IDeleteAction
             $editor = new UserEditor($user);
             $editor->updateCounters([
                 'invites' => -1,
-                'inviteSuccess' => -1 * $invite->success,
+                'inviteSuccess' => -1 * $invite->successCount,
             ]);
 
             // store points
             if (!isset($itemsToUserSubmit[$invite->inviterID])) {
                 $itemsToUserSubmit[$invite->inviterID] = 0;
             }
+
             $itemsToUserSubmit[$invite->inviterID]++;
 
             if (!isset($itemsToUserSuccess[$invite->inviterID])) {
                 $itemsToUserSuccess[$invite->inviterID] = 0;
             }
-            $itemsToUserSuccess[$invite->inviterID] += $invite->successCount;
-        }
 
-        // remove activity event
-        UserActivityEventHandler::getInstance()->removeEvents('com.uz.wcf.invitation.recentActivityEvent.submit', [$invite->inviteID]);
+            $itemsToUserSuccess[$invite->inviterID] += $invite->successCount;
+
+            // remove activity event
+            UserActivityEventHandler::getInstance()->removeEvents(
+                'com.uz.wcf.invitation.recentActivityEvent.submit',
+                [$invite->inviteID]
+            );
+        }
 
         // remove points
         if (\count($itemsToUserSubmit)) {
-            UserActivityPointHandler::getInstance()->removeEvents('com.uz.wcf.invitation.activityPointEvent.submit', $itemsToUserSubmit);
+            UserActivityPointHandler::getInstance()->removeEvents(
+                'com.uz.wcf.invitation.activityPointEvent.submit',
+                $itemsToUserSubmit
+            );
         }
+
         if (\count($itemsToUserSuccess)) {
-            UserActivityPointHandler::getInstance()->removeEvents('com.uz.wcf.invitation.activityPointEvent.success', $itemsToUserSuccess);
+            UserActivityPointHandler::getInstance()->removeEvents(
+                'com.uz.wcf.invitation.activityPointEvent.success',
+                $itemsToUserSuccess
+            );
         }
 
         // update cache
@@ -140,7 +153,7 @@ class InviteAction extends AbstractDatabaseObjectAction implements IDeleteAction
     /**
      * @inheritDoc
      */
-    public function validateUpdate()
+    public function validateUpdate(): void
     {
     }
 }

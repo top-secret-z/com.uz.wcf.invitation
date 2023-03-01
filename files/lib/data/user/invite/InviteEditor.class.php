@@ -25,9 +25,6 @@ namespace wcf\data\user\invite;
 
 use wcf\data\DatabaseObjectEditor;
 
-/**
- * Provides functions to edit invitations.
- */
 class InviteEditor extends DatabaseObjectEditor
 {
     /**

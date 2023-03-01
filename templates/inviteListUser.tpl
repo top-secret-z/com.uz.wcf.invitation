@@ -1,11 +1,10 @@
 {include file='userMenuSidebar'}
 
 {capture assign='contentTitleBadge'}<span class="badge">{#$items}</span>{/capture}
-
 {capture assign='pageTitle'}{lang}wcf.user.invite.myInvites{/lang}{/capture}
-
 {capture assign='contentHeader'}
     {assign var="count" value=$__wcf->getUser()->inviteSuccess}
+
     <header class="contentHeader">
         <div class="contentHeaderTitle">
             <h1 class="contentTitle">{lang}wcf.user.invite.myInvites{/lang} <span class="badge">{#$__wcf->getUser()->invites}</span></h1>
@@ -56,6 +55,7 @@
                         {else}
                             <h3>{$invite->subject|truncate:45}</h3>
                         {/if}
+
                         <ul class="inlineList">
                             <li>
                                 <span class="icon icon16 fa-clock-o"></span>

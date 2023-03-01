@@ -31,11 +31,6 @@ class InviteTopSuccessMembersBoxCacheBuilder extends AbstractSortedUserCacheBuil
     /**
      * @inheritDoc
      */
-    protected $maxLifetime = 300;
-
-    /**
-     * @inheritDoc
-     */
     protected $defaultLimit = INVITE_DISPLAY_BOX_ENTRIES + 1;
 
     /**

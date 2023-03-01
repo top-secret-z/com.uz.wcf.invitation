@@ -37,8 +37,10 @@ class InviteDeleteBulkProcessingAction extends AbstractUserBulkProcessingAction
 {
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public function executeAction(DatabaseObjectList $objectList)
+    public function executeAction(DatabaseObjectList $objectList): void
     {
         if (!($objectList instanceof UserList)) {
             return;
@@ -48,32 +50,42 @@ class InviteDeleteBulkProcessingAction extends AbstractUserBulkProcessingAction
 
         if (!empty($users)) {
             $userIDs = $inviteToUser = $successToUser = [];
+
             foreach ($users as $user) {
                 $userIDs[] = $user->userID;
 
                 if (!isset($inviteToUser[$user->userID])) {
                     $inviteToUser[$user->userID] = 0;
                 }
+
                 $inviteToUser[$user->userID] += $user->invites;
 
                 if (!isset($successToUser[$user->userID])) {
                     $successToUser[$user->userID] = 0;
                 }
+
                 $successToUser[$user->userID] += $user->inviteSuccess;
             }
 
             // remove points
-            UserActivityPointHandler::getInstance()->removeEvents('com.uz.wcf.invitation.activityPointEvent.submit', $inviteToUser);
-            UserActivityPointHandler::getInstance()->removeEvents('com.uz.wcf.invitation.activityPointEvent.success', $successToUser);
+            UserActivityPointHandler::getInstance()->removeEvents(
+                'com.uz.wcf.invitation.activityPointEvent.submit',
+                $inviteToUser
+            );
+
+            UserActivityPointHandler::getInstance()->removeEvents(
+                'com.uz.wcf.invitation.activityPointEvent.success',
+                $successToUser
+            );
 
             // remove user counts
             $conditions = new PreparedStatementConditionBuilder();
             $conditions->add("userID IN (?)", [$userIDs]);
 
-            $sql = "UPDATE    wcf" . WCF_N . "_user
+            $sql = "UPDATE wcf1_user
                     SET invites = 0, inviteSuccess = 0
-                " . $conditions;
-            $statement = WCF::getDB()->prepareStatement($sql);
+                    " . $conditions;
+            $statement = WCF::getDB()->prepare($sql);
             $statement->execute($conditions->getParameters());
 
             // reset invitation box cache
@@ -82,23 +94,25 @@ class InviteDeleteBulkProcessingAction extends AbstractUserBulkProcessingAction
             // remove invites and success
             $conditions = new PreparedStatementConditionBuilder();
             $conditions->add("inviterID IN (?)", [$userIDs]);
-            $sql = "DELETE FROM    wcf" . WCF_N . "_user_invite
+            $sql = "DELETE FROM wcf1_user_invite
                     " . $conditions;
-            $statement = WCF::getDB()->prepareStatement($sql);
+            $statement = WCF::getDB()->prepare($sql);
             $statement->execute($conditions->getParameters());
 
             $conditions = new PreparedStatementConditionBuilder();
             $conditions->add("inviterID IN (?)", [$userIDs]);
             $conditions->add("inviteID IS NULL");
-            $sql = "DELETE FROM    wcf" . WCF_N . "_user_invite_success
+            $sql = "DELETE FROM wcf1_user_invite_success
                     " . $conditions;
-            $statement = WCF::getDB()->prepareStatement($sql);
+            $statement = WCF::getDB()->prepare($sql);
             $statement->execute($conditions->getParameters());
         }
     }
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
     public function getObjectList()
     {

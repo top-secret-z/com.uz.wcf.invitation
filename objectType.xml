@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/objectType.xsd">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com https://www.woltlab.com/XSD/5.4/objectType.xsd">
     <import>
         <!-- activity points -->
         <type>
@@ -7,6 +7,7 @@
             <definitionname>com.woltlab.wcf.user.activityPointEvent</definitionname>
             <points>2</points>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.activityPointEvent.success</name>
             <definitionname>com.woltlab.wcf.user.activityPointEvent</definitionname>
@@ -19,6 +20,7 @@
             <definitionname>com.woltlab.wcf.boxController</definitionname>
             <classname>wcf\system\box\InviteTopMembersBoxController</classname>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.topSuccessInviter</name>
             <definitionname>com.woltlab.wcf.boxController</definitionname>
@@ -36,6 +38,7 @@
             <propertyname>invites</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.inviteSuccess</name>
             <definitionname>com.woltlab.wcf.condition.ad</definitionname>
@@ -55,6 +58,7 @@
             <propertyname>invites</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.inviteSuccess</name>
             <definitionname>com.woltlab.wcf.condition.notice</definitionname>
@@ -75,6 +79,7 @@
             <propertyname>inviteSuccess</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.invites</name>
             <definitionname>com.woltlab.wcf.condition.trophy</definitionname>
@@ -94,6 +99,7 @@
             <propertyname>invites</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.inviteSuccess</name>
             <definitionname>com.woltlab.wcf.bulkProcessing.user.condition</definitionname>
@@ -102,6 +108,7 @@
             <propertyname>inviteSuccess</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <!-- user group assignment conditions -->
         <type>
             <name>com.uz.wcf.invitation.invites</name>
@@ -111,6 +118,7 @@
             <propertyname>invites</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.inviteSuccess</name>
             <definitionname>com.woltlab.wcf.condition.userGroupAssignment</definitionname>
@@ -119,6 +127,7 @@
             <propertyname>inviteSuccess</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <!-- user search conditions -->
         <type>
             <name>com.uz.wcf.invitation.invites</name>
@@ -128,6 +137,7 @@
             <propertyname>invites</propertyname>
             <minvalue>0</minvalue>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.inviteSuccess</name>
             <definitionname>com.woltlab.wcf.condition.userSearch</definitionname>
@@ -167,6 +177,7 @@
             <default>0</default>
             <categoryname>com.woltlab.wcf.user</categoryname>
         </type>
+
         <type>
             <name>com.uz.wcf.invitation.success</name>
             <definitionname>com.woltlab.wcf.statDailyHandler</definitionname>

@@ -28,9 +28,6 @@ use wcf\data\user\invite\success\InviteSuccess;
 use wcf\system\menu\user\UserMenu;
 use wcf\system\WCF;
 
-/**
- * Shows the user's invitations.
- */
 class InviteListUserPage extends SortablePage
 {
     /**
@@ -65,20 +62,21 @@ class InviteListUserPage extends SortablePage
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    protected function initObjectList()
+    protected function initObjectList(): void
     {
         parent::initObjectList();
 
         $this->objectList->getConditionBuilder()->add("user_invite.inviterID = ?", [WCF::getUser()->userID]);
-
         $this->usernames = InviteSuccess::getUsernamesOfNameRegistration(WCF::getUser()->userID);
     }
 
     /**
      * @inheritDoc
      */
-    public function assignVariables()
+    public function assignVariables(): void
     {
         parent::assignVariables();
 
@@ -89,8 +87,11 @@ class InviteListUserPage extends SortablePage
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\PermissionDeniedException
+     * @throws \wcf\system\exception\SystemException
      */
-    public function show()
+    public function show(): void
     {
         // set active tab
         UserMenu::getInstance()->setActiveMenuItem('wcf.user.menu.invite.list');

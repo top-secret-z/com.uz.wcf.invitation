@@ -24,11 +24,16 @@
 namespace wcf\data\user\invite\success;
 
 use wcf\data\DatabaseObject;
-use wcf\data\user\User;
 use wcf\system\cache\runtime\UserRuntimeCache;
 
 /**
- * Represents an invitation success.
+ * @property int $successID
+ * @property null|int $inviteID
+ * @property null|int $inviterID
+ * @property string $inviterName
+ * @property null|int $userID
+ * @property string $username
+ * @property int $time
  */
 class InviteSuccess extends DatabaseObject
 {
@@ -44,8 +49,10 @@ class InviteSuccess extends DatabaseObject
 
     /**
      * returns for a specific user the names of users who registered per username registration
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public static function getUsernamesOfNameRegistration($userID)
+    public static function getUsernamesOfNameRegistration(int $userID): string
     {
         $nameList = new InviteSuccessList();
         $nameList->getConditionBuilder()->add('inviterID = ?', [$userID]);
@@ -54,10 +61,18 @@ class InviteSuccess extends DatabaseObject
         $nameList->readObjects();
 
         $names = [];
+
+        /** @var self $name */
         foreach ($nameList->getObjects() as $name) {
             if ($name->userID) {
                 $user = UserRuntimeCache::getInstance()->getObject($name->userID);
-                $names[] = '<a class="userLink" href="' . $user->getLink() . '" data-user-id="' . $name->userID . '">' . $name->username . '</a>';
+
+                if (null !== $user) {
+                    $names[] = '<a class="userLink" href="' . $user->getLink(
+                    ) . '" data-user-id="' . $name->userID . '">' . $name->username . '</a>';
+                } else {
+                    $names[] = $name->username;
+                }
             } else {
                 $names[] = $name->username;
             }

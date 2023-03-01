@@ -1,44 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/eventListener.xsd">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com https://www.woltlab.com/XSD/5.4/eventListener.xsd">
     <import>
-        <eventlistener name="inviteRegisterFormAssignVariables">
+        <eventlistener name="inviteRegisterForm">
             <eventclassname>wcf\form\RegisterForm</eventclassname>
-            <eventname>assignVariables</eventname>
-            <environment>user</environment>
-            <inherit>1</inherit>
-            <listenerclassname>wcf\system\event\listener\InviteRegisterFormListener</listenerclassname>
-        </eventlistener>
-        <eventlistener name="inviteRegisterFormReadFormParameters">
-            <eventclassname>wcf\form\RegisterForm</eventclassname>
-            <eventname>readFormParameters</eventname>
-            <environment>user</environment>
-            <inherit>1</inherit>
-            <listenerclassname>wcf\system\event\listener\InviteRegisterFormListener</listenerclassname>
-        </eventlistener>
-        <eventlistener name="inviteRegisterFormReadParameters">
-            <eventclassname>wcf\form\RegisterForm</eventclassname>
-            <eventname>readParameters</eventname>
-            <environment>user</environment>
-            <inherit>1</inherit>
-            <listenerclassname>wcf\system\event\listener\InviteRegisterFormListener</listenerclassname>
-        </eventlistener>
-        <eventlistener name="inviteRegisterFormSave">
-            <eventclassname>wcf\form\RegisterForm</eventclassname>
-            <eventname>save</eventname>
-            <environment>user</environment>
-            <inherit>1</inherit>
-            <listenerclassname>wcf\system\event\listener\InviteRegisterFormListener</listenerclassname>
-        </eventlistener>
-        <eventlistener name="inviteRegisterFormSaved">
-            <eventclassname>wcf\form\RegisterForm</eventclassname>
-            <eventname>saved</eventname>
-            <environment>user</environment>
-            <inherit>1</inherit>
-            <listenerclassname>wcf\system\event\listener\InviteRegisterFormListener</listenerclassname>
-        </eventlistener>
-        <eventlistener name="inviteRegisterFormValidate">
-            <eventclassname>wcf\form\RegisterForm</eventclassname>
-            <eventname>validate</eventname>
+            <eventname>assignVariables,readFormParameters,readParameters,save,saved,validate</eventname>
             <environment>user</environment>
             <inherit>1</inherit>
             <listenerclassname>wcf\system\event\listener\InviteRegisterFormListener</listenerclassname>
@@ -50,4 +15,13 @@
             <listenerclassname>wcf\system\event\listener\InviteMembersListPageListener</listenerclassname>
         </eventlistener>
     </import>
+
+    <delete>
+        <eventlistener name="inviteRegisterFormAssignVariables" />
+        <eventlistener name="inviteRegisterFormReadFormParameters" />
+        <eventlistener name="inviteRegisterFormReadParameters" />
+        <eventlistener name="inviteRegisterFormSave" />
+        <eventlistener name="inviteRegisterFormSaved" />
+        <eventlistener name="inviteRegisterFormValidate" />
+    </delete>
 </data>

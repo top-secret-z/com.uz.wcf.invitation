@@ -1,9 +1,7 @@
 {include file='userMenuSidebar'}
 
 {capture assign='pageTitle'}{lang}wcf.user.invite.add{/lang}{/capture}
-
 {capture assign='contentTitle'}{lang}wcf.user.invite.add{/lang}{/capture}
-
 {capture assign='contentDescription'}{$description}{if INVITE_CODE_OPTION == 'may' && INVITE_CODE_USERNAME}<br>{lang}wcf.user.invite.description.username{/lang}{/if}{/capture}
 
 {include file='header' __disableAds=true __sidebarLeftHasMenu=true}
@@ -64,7 +62,7 @@
                                     {if $errorType == 'empty'}
                                         {lang}wcf.global.form.error.empty{/lang}
                                     {else}
-                                        {lang}wcf.user.invite.emailField.error.{@$errorType}{/lang}
+                                        {lang}wcf.user.invite.emailField.error.{$errorType}{/lang}
                                     {/if}
                                 </small>
                             {/if}
@@ -81,7 +79,7 @@
                                     {if $errorType == 'empty'}
                                         {lang}wcf.global.form.error.empty{/lang}
                                     {else}
-                                        {lang}wcf.user.invite.subject.error.{@$errorType}{/lang}
+                                        {lang}wcf.user.invite.subject.error.{$errorType}{/lang}
                                     {/if}
                                 </small>
                             {/if}
@@ -98,7 +96,7 @@
                                     {if $errorType == 'empty'}
                                         {lang}wcf.global.form.error.empty{/lang}
                                     {else}
-                                        {lang}wcf.user.invite.message.error.{@$errorType}{/lang}
+                                        {lang}wcf.user.invite.message.error.{$errorType}{/lang}
                                     {/if}
                                 </small>
                             {/if}
@@ -108,12 +106,12 @@
             {/if}
             
             {event name='sections'}
-        </div><!-- div#InviteAdd -->
+        </div>
         
-            <div class="formSubmit">
-                <input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s">
-                {csrfToken}
-            </div>
+        <div class="formSubmit">
+            <input type="submit" value="{lang}wcf.global.button.submit{/lang}" accesskey="s">
+            {csrfToken}
+        </div>
     </form>
 {/if}
     
@@ -143,4 +141,5 @@
         });
     </script>
 {/if}
+
 {include file='footer'}
