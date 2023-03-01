@@ -97,6 +97,21 @@ class InviteAddForm extends AbstractForm
             $this->code = Invite::getNewCode();
         }
 
+        // Template 0 = display, 1 = locked
+        if(INVITE_CODE_LIMIT_UNUSED == 0){
+            $this->unusedCode = 0;
+        }elseif(INVITE_CODE_LIMIT_UNUSED > Invite::checkUnusedCodeExist()){
+            $this->unusedCode = 0;
+        }else{
+            $this->unusedCode = 1;
+        }
+
+        if(INVITE_EMAIL_LIMIT == 0){
+            $this->emailCode = 1;
+        }else{
+            $this->emailCode = 0;
+        }
+
         $this->method = 'copy';
 
         switch (INVITE_CODE_OPTION) {
@@ -221,6 +236,8 @@ class InviteAddForm extends AbstractForm
 
         WCF::getTPL()->assign([
             'code' => $this->code,
+            'unusedCode' => $this->unusedCode,
+            'emailCode' => $this->emailCode,
             'description' => $this->description,
             'emailField' => $this->emailField,
             'message' => $this->message,

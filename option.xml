@@ -70,11 +70,19 @@ must:!invite_code_username</enableoptions>
                 <showorder>5</showorder>
             </option>
 
+            <option name="invite_code_limit_unused">
+                <categoryname>user.invite.code</categoryname>
+                <optiontype>integer</optiontype>
+                <defaultvalue>0</defaultvalue>
+                <minvalue>0</minvalue>
+                <showorder>6</showorder>
+            </option>
+
             <option name="invite_email_limit">
                 <categoryname>user.invite.email</categoryname>
                 <optiontype>integer</optiontype>
                 <defaultvalue>3</defaultvalue>
-                <minvalue>1</minvalue>
+                <minvalue>0</minvalue>
             </option>
             <option name="invite_email_time">
                 <categoryname>user.invite.email</categoryname>
