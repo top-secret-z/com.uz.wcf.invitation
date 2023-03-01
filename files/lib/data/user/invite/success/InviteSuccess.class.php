@@ -20,12 +20,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace wcf\data\user\invite\success;
 
 use wcf\data\DatabaseObject;
 use wcf\data\user\User;
 use wcf\system\cache\runtime\UserRuntimeCache;
-use wcf\system\WCF;
 
 /**
  * Represents an invitation success.

@@ -20,10 +20,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace wcf\data\user\invite\success;
 
 use wcf\data\DatabaseObjectList;
-use wcf\system\WCF;
 
 /**
  * Represents a list of invitation successes.
