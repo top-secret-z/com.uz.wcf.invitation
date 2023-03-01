@@ -192,6 +192,28 @@ class Invite extends DatabaseObject
     }
 
     /**
+     * Returns 0 if unused codes does not exist
+     */
+    public static function checkUnusedCodeExist()
+    {
+        // code unused limit exists, check unused usage
+        $sCount = 0;
+        $sql = "SELECT       successCount
+                FROM         wcf" . WCF_N . "_user_invite
+                WHERE        inviterID = " . WCF::getUser()->userID . "
+                ORDER BY     successCount ASC";
+        $statement = WCF::getDB()->prepareStatement($sql);
+        $statement->execute();
+        while ($key = $statement->fetchArray()) {
+            if ($key > 0) {
+                $sCount++;
+            }
+        }
+
+        return $sCount;
+    }
+
+    /**
      * Returns a code xxxx-xxxx-xxxx-xxxx
      */
     public static function getNewCode()

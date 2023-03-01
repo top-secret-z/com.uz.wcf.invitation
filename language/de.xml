@@ -20,6 +20,7 @@
         <item name="wcf.acp.invite.message"><![CDATA[Nachricht]]></item>
         <item name="wcf.acp.invite.successCount"><![CDATA[Erfolg]]></item>
         <item name="wcf.acp.invite.time"><![CDATA[Zeit]]></item>
+        <item name="wcf.acp.invite.invitedName"><![CDATA[Eingeladener]]></item>
     </category>
 
     <category name="wcf.acp.menu">
@@ -39,6 +40,8 @@
         <item name="wcf.acp.option.invite_code_length.description"><![CDATA[Es wird ein Code in der Form XXXX-XXXX-XXXX-XXXX genutzt.]]></item>
         <item name="wcf.acp.option.invite_code_limit"><![CDATA[Limit]]></item>
         <item name="wcf.acp.option.invite_code_limit.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gebe{else}Geben Sie{/if} hier an, wie häufig ein Code genutzt werden darf. 0 eingeben, damit der Code beliebig oft genutzt werden kann.]]></item>
+        <item name="wcf.acp.option.invite_code_limit_unused"><![CDATA[Limit ungenutzter Codes]]></item>
+        <item name="wcf.acp.option.invite_code_limit_unused.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Gebe{else}Geben Sie{/if} hier an, wie viele ungenutzte Codes insgesamt Verfügbar sein dürfen. 0 eingeben, damit beliebig viele generiert werden können.]]></item>
         <item name="wcf.acp.option.invite_code_option"><![CDATA[Eingabe während der Registrierung]]></item>
         <item name="wcf.acp.option.invite_code_option.may"><![CDATA[optional]]></item>
         <item name="wcf.acp.option.invite_code_option.maynot"><![CDATA[verhindern]]></item>
@@ -50,7 +53,7 @@
         <item name="wcf.acp.option.invite_display_message_sidebar"><![CDATA[In Seitenleiste anzeigen]]></item>
         <item name="wcf.acp.option.invite_display_userInformation"><![CDATA[Bei Benutzerinformationen anzeigen]]></item>
         <item name="wcf.acp.option.invite_email_limit"><![CDATA[Limit]]></item>
-        <item name="wcf.acp.option.invite_email_limit.description"><![CDATA[Es darf bei einer Einladung nur die angegebene Zahl von unterschiedlichen E-Mail-Empfängern angegeben werden.]]></item>
+        <item name="wcf.acp.option.invite_email_limit.description"><![CDATA[Es darf bei einer Einladung nur die angegebene Zahl von unterschiedlichen E-Mail-Empfängern angegeben werden. 0 deaktiviert die E-Mail-Option.]]></item>
         <item name="wcf.acp.option.invite_email_time"><![CDATA[Spam-Schutz]]></item>
         <item name="wcf.acp.option.invite_email_time.description"><![CDATA[Eine E-Mail-Adresse darf erst nach der angegebenen Zeit erneut für eine Einladung genutzt werden.]]></item>
     </category>
@@ -87,7 +90,7 @@
         <item name="wcf.user.invite.box.invites"><![CDATA[{#$userProfile->invites} {if $userProfile->invites == 1}Einladung{else}Einladungen{/if}]]></item>
         <item name="wcf.user.invite.box.inviteSuccess"><![CDATA[{#$userProfile->inviteSuccess} {if $userProfile->inviteSuccess == 1}Einladung{else}Einladungen{/if}]]></item>
         <item name="wcf.user.invite.code"><![CDATA[Einladungscode]]></item>
-        <item name="wcf.user.invite.code.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du kannst{else}Sie können{/if} den Code direkt per E-Mail versenden oder für eine andere Übermittlungsart notieren und persönlich weitergeben.]]></item>
+        <item name="wcf.user.invite.code.description"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du kannst{else}Sie können{/if} den Code {if $emailCode == 0}direkt per E-Mail versenden oder für eine andere Übermittlungsart{/if} notieren und persönlich weitergeben.]]></item>
         <item name="wcf.user.invite.code.share"><![CDATA[persönliche Weitergabe]]></item>
         <item name="wcf.user.invite.code.validity"><![CDATA[Der Code ist {if INVITE_CODE_EXPIRE}{INVITE_CODE_EXPIRE} {if INVITE_CODE_EXPIRE == 1}Tag{else}Tage{/if} gültig{else} dauerhaft gültig{/if}.<br>{if LANGUAGE_USE_INFORMAL_VARIANT}Klicke{else}Klicken Sie{/if} am Ende des Formulars auf „Absenden“, um die Einladung zu speichern und um den Code zu aktivieren.]]></item>
         <item name="wcf.user.invite.description.may"><![CDATA[Der Eingeladene kann den Einladungscode angeben, muss es aber nicht. Die Einladung wird {if LANGUAGE_USE_INFORMAL_VARIANT}deinem{else}Ihrem{/if} Punktekonto gutgeschrieben, wenn sich ein neuer Benutzer mit dem Code oder der E-Mail-Adresse, die {if LANGUAGE_USE_INFORMAL_VARIANT}du in der E-Mail genutzt hast{else}Sie in der E-Mail genutzt haben{/if}, registriert.]]></item>
@@ -133,6 +136,8 @@
         <item name="wcf.user.invite.noInvites"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Du hast{else}Sie haben{/if} noch keine Einladungen erstellt.]]></item>
         <item name="wcf.user.invite.recentActivity.submit"><![CDATA[Hat eine <a href="{link controller='InviteAdd'}{/link}">Einladung</a> erstellt.]]></item>
         <item name="wcf.user.invite.subject"><![CDATA[Betreff]]></item>
+        <item name="wcf.user.invite.subject.unusedCode"><![CDATA[Gesperrt]]></item>
+        <item name="wcf.user.invite.unusedCode.description"><![CDATA[Bevor ein neuer Einladungscode erstellt werden kann, muss der alte genutzt worden sein.]]></item>
         <item name="wcf.user.invite.subject.default"><![CDATA[Einladung für „{PAGE_TITLE|language}“]]></item>
         <item name="wcf.user.invite.subject.error.tooLong"><![CDATA[Der Betreff darf maximal 255 Zeichen lang sein.]]></item>
         <item name="wcf.user.invite.success"><![CDATA[{#$invite->successCount} mal erfolgreich]]></item>

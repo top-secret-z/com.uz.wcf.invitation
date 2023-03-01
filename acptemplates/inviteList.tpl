@@ -52,6 +52,7 @@
                     <th class="columnText columnCode{if $sortField == 'code'} active {@$sortOrder}{/if}"><a href="{link controller='InviteList'}pageNo={@$pageNo}&sortField=code&sortOrder={if $sortField == 'code' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.invite.code{/lang}</a></th>
                     <th class="columnDate columnTime{if $sortField == 'time'} active {@$sortOrder}{/if}"><a href="{link controller='InviteList'}pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.invite.time{/lang}</a></th>
                     <th class="columnText columnInviterName{if $sortField == 'inviterName'} active {@$sortOrder}{/if}"><a href="{link controller='InviteList'}pageNo={@$pageNo}&sortField=inviterName&sortOrder={if $sortField == 'inviterName' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.invite.inviterName{/lang}</a></th>
+                    <th class="columnText columnInvitedName">{lang}wcf.acp.invite.invitedName{/lang}</th>
                     <th class="columnDigits columnSuccessCount{if $sortField == 'successCount'} active {@$sortOrder}{/if}"><a href="{link controller='InviteList'}pageNo={@$pageNo}&sortField=successCount&sortOrder={if $sortField == 'successCount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.invite.successCount{/lang}</a></th>
                     <th class="columnText columnEmails{if $sortField == 'emails'} active {@$sortOrder}{/if}"><a href="{link controller='InviteList'}pageNo={@$pageNo}&sortField=emails&sortOrder={if $sortField == 'emails' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.invite.emails{/lang}</a></th>
                     <th class="columnText columnText{if $sortField == 'message'} active {@$sortOrder}{/if}"><a href="{link controller='InviteList'}pageNo={@$pageNo}&sortField=message&sortOrder={if $sortField == 'message' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">{lang}wcf.acp.invite.message{/lang}</a></th>
@@ -72,6 +73,7 @@
                         <td class="columnText columnCode">{$invite->code}</td>
                         <td class="columnDate columnTime">{@$invite->time|time}</td>
                         <td class="columnText columnInviterName">{$invite->inviterName}</td>
+                        <td class="columnText columnInvitedName">{@$invite->getUsernames()}</td>
                         <td class="columnDigits columnSuccessCount">{#$invite->successCount}</td>
                         <td class="columnText columnEmails">{$invite->emails}</td>
                         <td class="columnText columnText">{$invite->message}</td>
