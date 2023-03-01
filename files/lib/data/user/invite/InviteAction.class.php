@@ -20,6 +20,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace wcf\data\user\invite;
 
 use wcf\data\AbstractDatabaseObjectAction;
@@ -32,7 +33,6 @@ use wcf\system\cache\builder\InviteTopMembersBoxCacheBuilder;
 use wcf\system\cache\builder\InviteTopSuccessMembersBoxCacheBuilder;
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\user\activity\point\UserActivityPointHandler;
-use wcf\system\WCF;
 
 /**
  * Executes invitation-related actions.

@@ -20,12 +20,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 namespace wcf\system\user\notification\event;
 
 use LogicException;
 use wcf\system\cache\runtime\UserProfileRuntimeCache;
 use wcf\system\request\LinkHandler;
-use wcf\system\WCF;
 
 /**
  * Notification event for invites.
