@@ -20,6 +20,7 @@
         <item name="wcf.acp.invite.message"><![CDATA[Message]]></item>
         <item name="wcf.acp.invite.successCount"><![CDATA[Success]]></item>
         <item name="wcf.acp.invite.time"><![CDATA[Time]]></item>
+        <item name="wcf.acp.invite.invitedName"><![CDATA[Invited]]></item>
     </category>
 
     <category name="wcf.acp.menu">
@@ -39,6 +40,8 @@
         <item name="wcf.acp.option.invite_code_length.description"><![CDATA[A code in the form XXXX-XXXX-XXXX-XXXX is used.]]></item>
         <item name="wcf.acp.option.invite_code_limit"><![CDATA[Limit]]></item>
         <item name="wcf.acp.option.invite_code_limit.description"><![CDATA[Enter here how often a code can be used. Enter 0 to allow the code to be used unlimited.]]></item>
+        <item name="wcf.acp.option.invite_code_limit_unused"><![CDATA[Limit unused codes]]></item>
+        <item name="wcf.acp.option.invite_code_limit_unused.description"><![CDATA[Specify here how many unused codes may be available in total. Enter 0 so that any number can be generated.]]></item>
         <item name="wcf.acp.option.invite_code_option"><![CDATA[Entry during Registration]]></item>
         <item name="wcf.acp.option.invite_code_option.may"><![CDATA[optional]]></item>
         <item name="wcf.acp.option.invite_code_option.maynot"><![CDATA[prevent]]></item>
@@ -50,7 +53,7 @@
         <item name="wcf.acp.option.invite_display_message_sidebar"><![CDATA[Show in message sidebar]]></item>
         <item name="wcf.acp.option.invite_display_userInformation"><![CDATA[Show with user information]]></item>
         <item name="wcf.acp.option.invite_email_limit"><![CDATA[Limit]]></item>
-        <item name="wcf.acp.option.invite_email_limit.description"><![CDATA[You may only enter the given number of different email addresses.]]></item>
+        <item name="wcf.acp.option.invite_email_limit.description"><![CDATA[You may only enter the given number of different email addresses. 0 disables the e-mail option.]]></item>
         <item name="wcf.acp.option.invite_email_time"><![CDATA[Spam Protection]]></item>
         <item name="wcf.acp.option.invite_email_time.description"><![CDATA[You may re-use an email address for an invitation only after the given amount of time.]]></item>
     </category>
@@ -134,6 +137,8 @@
         <item name="wcf.user.invite.recentActivity.submit"><![CDATA[Has created an <a href="{link controller='InviteAdd'}{/link}">invitation</a>.]]></item>
         <item name="wcf.user.invite.subject"><![CDATA[Subject]]></item>
         <item name="wcf.user.invite.subject.default"><![CDATA[Invitation for “{PAGE_TITLE|language}”]]></item>
+        <item name="wcf.user.invite.subject.unusedCode"><![CDATA[Locked]]></item>
+        <item name="wcf.user.invite.unusedCode.description"><![CDATA[Before a new invitation code can be created, the old one must have been used.]]></item>
         <item name="wcf.user.invite.subject.error.tooLong"><![CDATA[The subject is limited to 255 characters.]]></item>
         <item name="wcf.user.invite.success"><![CDATA[{#$invite->successCount} times successful]]></item>
         <item name="wcf.user.invite.message"><![CDATA[Message]]></item>
