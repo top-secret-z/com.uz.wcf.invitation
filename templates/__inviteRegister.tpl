@@ -2,7 +2,7 @@
     {if $inviteCodeOption == 'must'}
         <dl{if $errorType.inviteCode|isset} class="formError"{/if}>
             <dt>
-                <label for="inviteCode">{lang}wcf.user.invite.inviteCode{/lang}</label>
+                <label for="inviteCode">{lang}wcf.user.invite.inviteCode{/lang}</label> <span class="customOptionRequired">*</span>
             </dt>
             <dd>
                 <input type="text" id="inviteCode" name="inviteCode" value="{$inviteCode}"  class="medium">
