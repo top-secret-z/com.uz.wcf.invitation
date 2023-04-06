@@ -25,9 +25,6 @@ namespace wcf\data\user\invite\success;
 
 use wcf\data\DatabaseObjectEditor;
 
-/**
- * Provides functions to edit invitation successes.
- */
 class InviteSuccessEditor extends DatabaseObjectEditor
 {
     /**

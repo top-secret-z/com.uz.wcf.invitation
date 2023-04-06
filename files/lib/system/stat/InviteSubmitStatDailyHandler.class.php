@@ -31,7 +31,7 @@ class InviteSubmitStatDailyHandler extends AbstractStatDailyHandler
     /**
      * @inheritDoc
      */
-    public function getData($date)
+    public function getData($date): array
     {
         return [
             'counter' => $this->getCounter($date, 'wcf' . WCF_N . '_user_invite', 'time'),

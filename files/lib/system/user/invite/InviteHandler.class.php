@@ -34,20 +34,23 @@ class InviteHandler extends SingletonFactory
 {
     /**
      * Returns a user's invite count.
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
      */
-    public function getCount($user = null)
+    public function getCount(?User $user = null)
     {
         if ($user === null) {
             $user = WCF::getUser();
         }
+
         if (!$user->userID) {
             return 0;
         }
 
-        $sql = "SELECT  COUNT(*) AS count
-                FROM    wcf" . WCF_N . "_user_invite
-                WHERE   inviterID = ?";
-        $statement = WCF::getDB()->prepareStatement($sql);
+        $sql = "SELECT COUNT(*) AS count
+                FROM wcf1_user_invite
+                WHERE inviterID = ?";
+        $statement = WCF::getDB()->prepare($sql);
         $statement->execute([$user->userID]);
 
         return $statement->fetchColumn();

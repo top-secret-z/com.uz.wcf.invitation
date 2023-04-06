@@ -25,7 +25,6 @@ namespace wcf\system\user\notification\object\type;
 
 use wcf\data\user\invite\success\InviteSuccess;
 use wcf\data\user\invite\success\InviteSuccessList;
-use wcf\data\user\User;
 use wcf\system\user\notification\object\InviteSuccessUserNotificationObject;
 
 /**

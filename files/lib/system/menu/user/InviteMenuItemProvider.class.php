@@ -33,7 +33,7 @@ class InviteMenuItemProvider extends DefaultUserMenuItemProvider
     /**
      * @inheritDoc
      */
-    public function isVisible()
+    public function isVisible(): bool
     {
         if (WCF::getSession()->getPermission('user.profile.canInvite')) {
             return true;

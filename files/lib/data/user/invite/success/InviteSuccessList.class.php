@@ -25,9 +25,6 @@ namespace wcf\data\user\invite\success;
 
 use wcf\data\DatabaseObjectList;
 
-/**
- * Represents a list of invitation successes.
- */
 class InviteSuccessList extends DatabaseObjectList
 {
     /**

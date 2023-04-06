@@ -25,9 +25,6 @@ namespace wcf\data\user\invite;
 
 use wcf\data\DatabaseObjectList;
 
-/**
- * Represents a list of invitations.
- */
 class InviteList extends DatabaseObjectList
 {
     /**

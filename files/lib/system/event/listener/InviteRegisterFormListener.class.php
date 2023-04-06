@@ -29,7 +29,10 @@ use wcf\data\user\invite\success\InviteSuccess;
 use wcf\data\user\invite\success\InviteSuccessAction;
 use wcf\data\user\User;
 use wcf\data\user\UserEditor;
+use wcf\form\RegisterForm;
 use wcf\system\cache\builder\InviteTopSuccessMembersBoxCacheBuilder;
+use wcf\system\database\exception\DatabaseQueryException;
+use wcf\system\database\exception\DatabaseQueryExecutionException;
 use wcf\system\exception\UserInputException;
 use wcf\system\user\activity\point\UserActivityPointHandler;
 use wcf\system\user\notification\object\InviteSuccessUserNotificationObject;
@@ -40,13 +43,8 @@ use wcf\util\StringUtil;
 /**
  * Handles additions to register form.
  */
-class InviteRegisterFormListener implements IParameterizedEventListener
+class InviteRegisterFormListener extends AbstractEventListener
 {
-    /**
-     * @inheritDoc
-     */
-    protected $eventObj;
-
     /**
      * invite, code and option
      */
@@ -61,24 +59,14 @@ class InviteRegisterFormListener implements IParameterizedEventListener
     public $inviteCodeOption = '';
 
     /**
-     * @inheritDoc
+     * Handles the readFormParameters event.
      */
-    public function execute($eventObj, $className, $eventName, array &$parameters)
+    protected function onReadFormParameters(): void
     {
         if (!MODULE_INVITE) {
             return;
         }
 
-        $this->eventObj = $eventObj;
-
-        $this->{$eventName}();
-    }
-
-    /**
-     * Handles the readFormParameters event.
-     */
-    protected function readFormParameters()
-    {
         if (isset($_POST['inviteCode'])) {
             WCF::getSession()->unregister('inviteCode');
 
@@ -89,11 +77,15 @@ class InviteRegisterFormListener implements IParameterizedEventListener
     /**
      * Handles the readParameters event.
      */
-    protected function readParameters()
+    protected function onReadParameters(): void
     {
+        if (!MODULE_INVITE) {
+            return;
+        }
+
         $this->inviteCodeOption = INVITE_CODE_OPTION;
 
-        if (INVITE_CODE_OPTION != 'maynot') {
+        if (INVITE_CODE_OPTION !== 'maynot') {
             if (!empty($_GET['inviteCode'])) {
                 WCF::getSession()->register('inviteCode', \strip_tags(StringUtil::trim($_GET['inviteCode'])));
             }
@@ -107,8 +99,12 @@ class InviteRegisterFormListener implements IParameterizedEventListener
     /**
      * Handles the assignVariables event.
      */
-    protected function assignVariables()
+    protected function onAssignVariables(): void
     {
+        if (!MODULE_INVITE) {
+            return;
+        }
+
         WCF::getTPL()->assign([
             'inviteCode' => $this->inviteCode,
             'inviteCodeOption' => $this->inviteCodeOption,
@@ -118,66 +114,76 @@ class InviteRegisterFormListener implements IParameterizedEventListener
     /**
      * Handles the validate event.
      */
-    protected function validate()
+    protected function onValidate(RegisterForm $eventObj): void
     {
+        if (!MODULE_INVITE) {
+            return;
+        }
+
         // code is required
-        if ($this->inviteCodeOption == 'must') {
+        if ($this->inviteCodeOption === 'must') {
             try {
                 // empty
                 if (empty($this->inviteCode)) {
                     throw new UserInputException('inviteCode', 'empty');
                 }
+
                 // must be correct
                 if (!Invite::checkCodeExist($this->inviteCode)) {
                     throw new UserInputException('inviteCode', 'invalid');
                 }
-            } catch (UserInputException $e) {
-                $this->eventObj->errorType[$e->getField()] = $e->getType();
+            } catch (UserInputException | DatabaseQueryExecutionException | DatabaseQueryException $e) {
+                $eventObj->errorType[$e->getField()] = $e->getType();
             }
         }
 
         // must be correct if entered
-        if ($this->inviteCodeOption == 'may') {
-            if (!empty($this->inviteCode)) {
-                try {
-                    // either valid code or username
-                    if (INVITE_CODE_USERNAME) {
-                        if (!Invite::checkCodeExist($this->inviteCode)) {
-                            $this->inviter = User::getUserByUsername($this->inviteCode);
-                            if (!$this->inviter->userID) {
-                                throw new UserInputException('inviteCode', 'invalidUsername');
-                            }
-                        }
-                    } else {
-                        if (!Invite::checkCodeExist($this->inviteCode)) {
-                            throw new UserInputException('inviteCode', 'invalid');
+        if (($this->inviteCodeOption === 'may') && !empty($this->inviteCode)) {
+            try {
+                // either valid code or username
+                if (INVITE_CODE_USERNAME) {
+                    if (!Invite::checkCodeExist($this->inviteCode)) {
+                        $this->inviter = User::getUserByUsername($this->inviteCode);
+                        if (!$this->inviter->userID) {
+                            throw new UserInputException('inviteCode', 'invalidUsername');
                         }
                     }
-                } catch (UserInputException $e) {
-                    $this->eventObj->errorType[$e->getField()] = $e->getType();
+                } elseif (!Invite::checkCodeExist($this->inviteCode)) {
+                    throw new UserInputException('inviteCode', 'invalid');
                 }
+            } catch (UserInputException | DatabaseQueryExecutionException | DatabaseQueryException $e) {
+                $eventObj->errorType[$e->getField()] = $e->getType();
             }
         }
     }
 
     /**
      * Handles the save event.
+     *
+     * @throws \wcf\system\database\exception\DatabaseQueryException
+     * @throws \wcf\system\database\exception\DatabaseQueryExecutionException
+     * @throws \wcf\system\exception\SystemException
      */
-    protected function save()
+    protected function onSave(RegisterForm $eventObj): void
     {
+        if (!MODULE_INVITE) {
+            return;
+        }
+
         // get invite to honour inviter
         if (!empty($this->inviteCode)) {
             $invite = Invite::getInviteByCode($this->inviteCode);
         } else {
             // get it from emails
-            $invite = Invite::getInviteByEmail($this->eventObj->email);
+            $invite = Invite::getInviteByEmail($eventObj->email);
         }
         if (!$invite->inviteID) {
             // last chance username
-            if ($this->inviteCodeOption == 'may' && INVITE_CODE_USERNAME) {
+            if ($this->inviteCodeOption === 'may' && INVITE_CODE_USERNAME) {
                 if (!$this->inviter) {
                     return;
                 }
+
                 $this->inviteByName = true;
             } else {
                 return;
@@ -186,10 +192,7 @@ class InviteRegisterFormListener implements IParameterizedEventListener
 
         if ($this->inviteByName === true) {
             // update user invite count
-            $editor = new UserEditor($this->inviter);
-            $editor->updateCounters([
-                'inviteSuccess' => 1,
-            ]);
+            (new UserEditor($this->inviter))->updateCounters(['inviteSuccess' => 1]);
         } else {
             // check inviting user
             $user = new User($invite->inviterID);
@@ -201,15 +204,7 @@ class InviteRegisterFormListener implements IParameterizedEventListener
             $this->invite = $invite;
 
             // update invite data
-            $usernames = [];
-            if (!empty($this->invite->usernames)) {
-                $usernames = \explode(', ', $this->invite->usernames);
-            }
-            $usernames[] = $this->eventObj->username;
-            $editor = new InviteEditor($this->invite);
-            $editor->updateCounters([
-                'successCount' => 1,
-            ]);
+            (new InviteEditor($this->invite))->updateCounters(['successCount' => 1]);
 
             // update user invite count
             $editor = new UserEditor($user);
@@ -219,10 +214,9 @@ class InviteRegisterFormListener implements IParameterizedEventListener
 
             // update code count
             if (!empty($this->inviteCode)) {
-                $sql = "INSERT INTO    wcf" . WCF_N . "_user_invite_code
-                        (code, used) VALUES    (?, ?)
-                        ON DUPLICATE KEY UPDATE    used = used + 1";
-                $statement = WCF::getDB()->prepareStatement($sql);
+                $sql = "INSERT INTO wcf1_user_invite_code (code, used) VALUES (?, ?)
+                        ON DUPLICATE KEY UPDATE used = used + 1";
+                $statement = WCF::getDB()->prepare($sql);
                 $statement->execute([$this->inviteCode, 1]);
             }
         }
@@ -230,9 +224,15 @@ class InviteRegisterFormListener implements IParameterizedEventListener
 
     /**
      * Handles the saved event.
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    protected function saved()
+    protected function onSaved(): void
     {
+        if (!MODULE_INVITE) {
+            return;
+        }
+
         if ($this->invite || $this->inviteByName) {
             // invite success
             $data = [
@@ -258,7 +258,11 @@ class InviteRegisterFormListener implements IParameterizedEventListener
             );
 
             // points for successful invitation
-            UserActivityPointHandler::getInstance()->fireEvent('com.uz.wcf.invitation.activityPointEvent.success', $successID, $inviterID);
+            UserActivityPointHandler::getInstance()->fireEvent(
+                'com.uz.wcf.invitation.activityPointEvent.success',
+                $successID,
+                $inviterID
+            );
 
             // update cache
             InviteTopSuccessMembersBoxCacheBuilder::getInstance()->reset();

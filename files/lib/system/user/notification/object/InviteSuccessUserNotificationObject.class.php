@@ -30,7 +30,7 @@ use wcf\system\WCF;
 /**
  * Represents an invitation as a notification object.
  */
-class InviteSuccessUserNotificationObject extends DatabaseObjectDecorator implements IStackableUserNotificationObject
+class InviteSuccessUserNotificationObject extends DatabaseObjectDecorator implements IUserNotificationObject
 {
     /**
      * @inheritDoc
@@ -40,7 +40,7 @@ class InviteSuccessUserNotificationObject extends DatabaseObjectDecorator implem
     /**
      * returns the title
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return '';
     }
@@ -48,7 +48,7 @@ class InviteSuccessUserNotificationObject extends DatabaseObjectDecorator implem
     /**
      * returns the URL
      */
-    public function getURL()
+    public function getURL(): string
     {
         return '';
     }
@@ -56,18 +56,9 @@ class InviteSuccessUserNotificationObject extends DatabaseObjectDecorator implem
     /**
      * returns the userID
      */
-    public function getAuthorID()
+    public function getAuthorID(): int
     {
         //return $this->userID;
         return WCF::getUser()->userID;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getRelatedObjectID()
-    {
-        //    return $this->inviterID;
-        //    return WCF::getUser()->userID;
     }
 }

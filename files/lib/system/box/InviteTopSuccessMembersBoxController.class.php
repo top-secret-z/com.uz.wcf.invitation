@@ -39,17 +39,19 @@ class InviteTopSuccessMembersBoxController extends AbstractBoxController
     protected static $supportedPositions = ['sidebarLeft', 'sidebarRight'];
 
     /**
-     * @see    wcf\system\box\IBoxController::hasLink()
+     * @inheritDoc
      */
-    public function hasLink()
+    public function hasLink(): bool
     {
-        return MODULE_MEMBERS_LIST == 1;
+        return MODULE_MEMBERS_LIST === 1;
     }
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public function getLink()
+    public function getLink(): string
     {
         if (MODULE_MEMBERS_LIST) {
             $parameters = 'sortField=inviteSuccess&sortOrder=DESC';
@@ -62,8 +64,10 @@ class InviteTopSuccessMembersBoxController extends AbstractBoxController
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    protected function loadContent()
+    protected function loadContent(): void
     {
         if (MODULE_INVITE) {
             $userIDs = InviteTopSuccessMembersBoxCacheBuilder::getInstance()->getData();
@@ -74,6 +78,7 @@ class InviteTopSuccessMembersBoxController extends AbstractBoxController
                 WCF::getTPL()->assign([
                     'userProfiles' => $userProfiles,
                 ]);
+
                 $this->content = WCF::getTPL()->fetch('boxInviteTopSuccessMembers');
             }
         }

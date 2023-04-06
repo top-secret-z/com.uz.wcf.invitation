@@ -23,7 +23,6 @@
 
 namespace wcf\system\worker;
 
-use wcf\data\user\User;
 use wcf\data\user\UserEditor;
 use wcf\data\user\UserList;
 use wcf\system\user\activity\point\UserActivityPointHandler;
@@ -46,8 +45,10 @@ class InviteRebuildDataWorker extends AbstractRebuildDataWorker
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    protected function initObjectList()
+    protected function initObjectList(): void
     {
         parent::initObjectList();
 
@@ -56,20 +57,27 @@ class InviteRebuildDataWorker extends AbstractRebuildDataWorker
 
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public function execute()
+    public function execute(): void
     {
         parent::execute();
 
         if (!$this->loopCount) {
             // reset activity points
-            UserActivityPointHandler::getInstance()->reset('com.uz.wcf.invitation.activityPointEvent.submit');
-            UserActivityPointHandler::getInstance()->reset('com.uz.wcf.invitation.activityPointEvent.success');
+            UserActivityPointHandler::getInstance()->reset(
+                'com.uz.wcf.invitation.activityPointEvent.submit'
+            );
+
+            UserActivityPointHandler::getInstance()->reset(
+                'com.uz.wcf.invitation.activityPointEvent.success'
+            );
 
             // reset invite counts in user
-            $sql = "UPDATE    wcf" . WCF_N . "_user
-                    SET    invites = ?, inviteSuccess = ?";
-            $statement = WCF::getDB()->prepareStatement($sql);
+            $sql = "UPDATE wcf1_user
+                    SET invites = ?, inviteSuccess = ?";
+            $statement = WCF::getDB()->prepare($sql);
             $statement->execute([0, 0]);
         }
 
@@ -78,27 +86,26 @@ class InviteRebuildDataWorker extends AbstractRebuildDataWorker
         }
 
         $inviteToUser = $successToUser = [];
-        foreach ($this->objectList as $user) {
-            $invite = $success = 0;
 
-            $sql = "SELECT    COUNT(*) AS counter
-                    FROM    wcf" . WCF_N . "_user_invite
-                    WHERE    inviterID = ?";
-            $statement = WCF::getDB()->prepareStatement($sql, 1);
+        /** @var \wcf\data\user\User $user */
+        foreach ($this->objectList as $user) {
+            $sql = "SELECT COUNT(*) AS counter
+                    FROM wcf1_user_invite
+                    WHERE inviterID = ?";
+            $statement = WCF::getDB()->prepare($sql, 1);
             $statement->execute([$user->userID]);
             $invite = $statement->fetchColumn();
 
-            $sql = "SELECT    COUNT(*) AS counter
-                    FROM    wcf" . WCF_N . "_user_invite_success
-                    WHERE    inviterID = ?";
-            $statement = WCF::getDB()->prepareStatement($sql, 1);
+            $sql = "SELECT COUNT(*) AS counter
+                    FROM wcf1_user_invite_success
+                    WHERE inviterID = ?";
+            $statement = WCF::getDB()->prepare($sql, 1);
             $statement->execute([$user->userID]);
             $success = $statement->fetchColumn();
 
             if ($invite || $success) {
                 // update user
-                $editor = new UserEditor($user);
-                $editor->updateCounters([
+                (new UserEditor($user))->updateCounters([
                     'invites' => $invite,
                     'inviteSuccess' => $success,
                 ]);
@@ -107,6 +114,7 @@ class InviteRebuildDataWorker extends AbstractRebuildDataWorker
                 if ($invite) {
                     $inviteToUser[$user->userID] = $invite;
                 }
+
                 if ($success) {
                     $successToUser[$user->userID] = $success;
                 }
@@ -115,10 +123,17 @@ class InviteRebuildDataWorker extends AbstractRebuildDataWorker
 
         // update activity points
         if (\count($inviteToUser)) {
-            UserActivityPointHandler::getInstance()->fireEvents('com.uz.wcf.invitation.activityPointEvent.submit', $inviteToUser, true);
+            UserActivityPointHandler::getInstance()->fireEvents(
+                'com.uz.wcf.invitation.activityPointEvent.submit',
+                $inviteToUser
+            );
         }
+
         if (\count($successToUser)) {
-            UserActivityPointHandler::getInstance()->fireEvents('com.uz.wcf.invitation.activityPointEvent.success', $successToUser, true);
+            UserActivityPointHandler::getInstance()->fireEvents(
+                'com.uz.wcf.invitation.activityPointEvent.success',
+                $successToUser
+            );
         }
     }
 }

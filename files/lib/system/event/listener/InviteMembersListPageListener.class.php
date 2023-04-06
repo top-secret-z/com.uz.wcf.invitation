@@ -23,15 +23,14 @@
 
 namespace wcf\system\event\listener;
 
+use wcf\page\MembersListPage;
+
 /**
  * Adds 'invites' sort field for members list.
  */
-class InviteMembersListPageListener implements IParameterizedEventListener
+class InviteMembersListPageListener extends AbstractEventListener
 {
-    /**
-     * @inheritDoc
-     */
-    public function execute($eventObj, $className, $eventName, array &$parameters)
+    public function onReadParameters(MembersListPage $eventObj): void
     {
         $eventObj->validSortFields[] = 'invites';
         $eventObj->validSortFields[] = 'inviteSuccess';

@@ -34,10 +34,13 @@ class InviteUserActivityEvent extends SingletonFactory implements IUserActivityE
 {
     /**
      * @inheritDoc
+     *
+     * @throws \wcf\system\exception\SystemException
      */
-    public function prepare(array $events)
+    public function prepare(array $events): void
     {
         $objectIDs = [];
+
         foreach ($events as $event) {
             $objectIDs[] = $event->objectID;
         }
@@ -51,16 +54,21 @@ class InviteUserActivityEvent extends SingletonFactory implements IUserActivityE
         // set message
         foreach ($events as $event) {
             if (isset($invites[$event->objectID])) {
+                /** @var \wcf\data\user\invite\Invite $invite */
                 $invite = $invites[$event->objectID];
 
                 // check permissions
                 if (!$invite->canSee()) {
                     continue;
                 }
+
                 $event->setIsAccessible();
 
                 // title and description
-                $text = WCF::getLanguage()->getDynamicVariable('wcf.user.invite.recentActivity.submit', ['user' => WCF::getUser()]);
+                $text = WCF::getLanguage()->getDynamicVariable(
+                    'wcf.user.invite.recentActivity.submit',
+                    ['user' => WCF::getUser()]
+                );
                 $event->setTitle($text);
                 $event->setDescription('');
             } else {

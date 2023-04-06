@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/2019/option.xsd">
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com https://www.woltlab.com/XSD/5.4/option.xsd">
     <import>
         <categories>
             <category name="user.invite">
                 <parent>user</parent>
             </category>
+
             <category name="user.invite.code">
                 <parent>user.invite</parent>
             </category>
+
             <category name="user.invite.email">
                 <parent>user.invite</parent>
             </category>
+
             <category name="user.invite.display">
                 <parent>user.invite</parent>
             </category>
@@ -22,6 +25,7 @@
                 <optiontype>boolean</optiontype>
                 <defaultvalue>1</defaultvalue>
             </option>
+
             <option name="module_invite_activity">
                 <categoryname>module.user</categoryname>
                 <optiontype>boolean</optiontype>
@@ -40,6 +44,7 @@ must:wcf.acp.option.invite_code_option.must]]></selectoptions>
 maynot:!invite_code_username
 must:!invite_code_username</enableoptions>
             </option>
+
             <option name="invite_code_expire">
                 <categoryname>user.invite.code</categoryname>
                 <optiontype>integer</optiontype>
@@ -48,6 +53,7 @@ must:!invite_code_username</enableoptions>
                 <suffix>days</suffix>
                 <showorder>2</showorder>
             </option>
+
             <option name="invite_code_limit">
                 <categoryname>user.invite.code</categoryname>
                 <optiontype>integer</optiontype>
@@ -84,6 +90,7 @@ must:!invite_code_username</enableoptions>
                 <defaultvalue>3</defaultvalue>
                 <minvalue>0</minvalue>
             </option>
+
             <option name="invite_email_time">
                 <categoryname>user.invite.email</categoryname>
                 <optiontype>integer</optiontype>
@@ -97,7 +104,8 @@ must:!invite_code_username</enableoptions>
                 <optiontype>boolean</optiontype>
                 <defaultvalue>1</defaultvalue>
             </option>
-                <option name="invite_display_userInformation">
+
+            <option name="invite_display_userInformation">
                 <categoryname>user.invite.display</categoryname>
                 <optiontype>boolean</optiontype>
                 <defaultvalue>1</defaultvalue>
