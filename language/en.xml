@@ -88,7 +88,7 @@
         <item name="wcf.user.invite.add"><![CDATA[Create invitation]]></item>
         <item name="wcf.user.invite.add.success"><![CDATA[The invitation was successfully created.]]></item>
         <item name="wcf.user.invite.box.invites"><![CDATA[{#$userProfile->invites} {if $userProfile->invites == 1}invitation{else}invitations{/if}]]></item>
-        <item name="wcf.user.invite.box.iinviteSuccess"><![CDATA[{#$userProfile->inviteSuccess} {if $userProfile->inviteSuccess == 1}invitation{else}invitations{/if}]]></item>
+        <item name="wcf.user.invite.box.inviteSuccess"><![CDATA[{#$userProfile->inviteSuccess} {if $userProfile->inviteSuccess == 1}invitation{else}invitations{/if}]]></item>
         <item name="wcf.user.invite.code"><![CDATA[Invitation Code]]></item>
         <item name="wcf.user.invite.code.description"><![CDATA[You may send the code by email or note it for another mean of communication or personal handing over.]]></item>
         <item name="wcf.user.invite.code.share"><![CDATA[personal handing over]]></item>
