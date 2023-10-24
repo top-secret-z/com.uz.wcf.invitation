@@ -68,9 +68,7 @@ class InviteAction extends AbstractDatabaseObjectAction
     /**
      * @inheritDoc
      */
-    public function validateDelete(): void
-    {
-    }
+    public function validateDelete(): void {}
 
     /**
      * @inheritDoc
@@ -153,7 +151,5 @@ class InviteAction extends AbstractDatabaseObjectAction
     /**
      * @inheritDoc
      */
-    public function validateUpdate(): void
-    {
-    }
+    public function validateUpdate(): void {}
 }
