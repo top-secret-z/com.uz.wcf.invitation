@@ -236,7 +236,7 @@ class Invite extends DatabaseObject
         $statement = WCF::getDB()->prepare($sql);
         $statement->execute([WCF::getUser()->userID]);
         while ($key = $statement->fetchArray()) {
-            if ($key > 0) {
+            if ($key["successCount"] > 0) {
                 $sCount++;
             }
         }
